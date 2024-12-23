@@ -112,10 +112,17 @@ def build():
     """构建博客"""
     generator = BlogGenerator()
     
-    # 清理输出目录
+    # 清理输出目录，保留.git
     if os.path.exists('output'):
-        shutil.rmtree('output')
-    os.makedirs('output')
+        for item in os.listdir('output'):
+            if item != '.git':
+                item_path = os.path.join('output', item)
+                if os.path.isfile(item_path):
+                    os.remove(item_path)
+                elif os.path.isdir(item_path):
+                    shutil.rmtree(item_path)
+    else:
+        os.makedirs('output')
     
     # 生成所有文章
     posts = []
@@ -165,6 +172,45 @@ Write your content here...
         f.write(template)
     
     print(f"Created new post: {filename}")
+
+@cli.command()
+@click.argument('title')
+def delete(title):
+    """删除博客文章"""
+    # 列出所有文章
+    posts = []
+    for filename in os.listdir('posts'):
+        if filename.endswith('.md') and title.lower() in filename.lower():
+            posts.append(filename)
+    
+    if not posts:
+        print(f"没有找到包含 '{title}' 的文章")
+        return
+    
+    if len(posts) > 1:
+        print("找到多篇文章：")
+        for i, post in enumerate(posts, 1):
+            print(f"{i}. {post}")
+        choice = input("请选择要删除的文章编号（输入数字）：")
+        try:
+            index = int(choice) - 1
+            if 0 <= index < len(posts):
+                filename = posts[index]
+            else:
+                print("无效的选择")
+                return
+        except ValueError:
+            print("请输入有效的数字")
+            return
+    else:
+        filename = posts[0]
+    
+    try:
+        os.remove(os.path.join('posts', filename))
+        print(f"已删除文章: {filename}")
+        print("请运行 'python blog.py build' 重新构建博客")
+    except Exception as e:
+        print(f"删除文章时出错: {str(e)}")
 
 if __name__ == '__main__':
     cli()

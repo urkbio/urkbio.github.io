@@ -98,10 +98,24 @@ git push -u origin gh-pages -f
 
 ## 后续更新博客
 
-1. 写新文章：`python blog.py new "文章标题"`
-2. 编辑文章内容（在 `posts` 目录下）
-3. 构建：`python blog.py build`
-4. 部署：进入 `output` 目录，执行：
+1. **写新文章**：
+```bash
+python blog.py new "文章标题"
+```
+
+2. **删除文章**：
+```bash
+python blog.py delete "文章标题"
+```
+如果找到多篇匹配的文章，会提示你选择要删除哪一篇。
+
+3. **构建博客**：
+```bash
+python blog.py build
+```
+
+4. **部署更新**：
+进入 `output` 目录，执行：
 ```bash
 git add .
 git commit -m "Update blog"
