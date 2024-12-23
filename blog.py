@@ -6,11 +6,23 @@ from jinja2 import Environment, FileSystemLoader
 import click
 from datetime import datetime
 import subprocess
+from xml.etree import ElementTree as ET
+from email.utils import formatdate
+import urllib.parse
 
 class BlogGenerator:
     def __init__(self):
         self.env = Environment(loader=FileSystemLoader('templates'))
         self.ensure_directories()
+        self.site_url = self._get_site_url()
+
+    def _get_site_url(self):
+        """从 CNAME 文件获取网站 URL"""
+        cname_path = os.path.join('templates', 'CNAME')
+        if os.path.exists(cname_path):
+            with open(cname_path, 'r') as f:
+                return f"https://{f.read().strip()}"
+        return "http://localhost:8000"  # 默认本地地址
 
     def ensure_directories(self):
         """确保必要的目录存在"""
@@ -51,13 +63,100 @@ class BlogGenerator:
         
         return metadata
 
-    def generate_index(self, posts):
+    def generate_index(self, posts, tags):
         """生成博客索引页面"""
         template = self.env.get_template('index.html')
-        output = template.render(posts=posts)
+        output = template.render(posts=posts, tags=tags)
         
         with open('output/index.html', 'w', encoding='utf-8') as f:
             f.write(output)
+
+    def generate_tag_pages(self, posts):
+        """为每个标签生成单独的页面"""
+        # 收集每个标签的文章
+        tag_posts = {}
+        for post in posts:
+            for tag in post.get('tags', []):
+                if tag not in tag_posts:
+                    tag_posts[tag] = []
+                tag_posts[tag].append(post)
+        
+        # 为每个标签生成页面
+        template = self.env.get_template('tag.html')
+        os.makedirs('output/tags', exist_ok=True)
+        
+        for tag, tag_posts_list in tag_posts.items():
+            output = template.render(
+                tag=tag,
+                posts=sorted(tag_posts_list, key=lambda x: x['date'], reverse=True)
+            )
+            
+            # 使用 URL 安全的文件名
+            safe_tag = tag.lower().replace(' ', '-')
+            with open(f'output/tags/{safe_tag}.html', 'w', encoding='utf-8') as f:
+                f.write(output)
+            
+        return tag_posts
+
+    def generate_rss(self, posts):
+        """生成 RSS feed"""
+        rss = ET.Element('rss', version='2.0')
+        channel = ET.SubElement(rss, 'channel')
+        
+        # 添加频道基本信息
+        title = ET.SubElement(channel, 'title')
+        title.text = 'CHIU BLOG'
+        
+        link = ET.SubElement(channel, 'link')
+        link.text = self.site_url
+        
+        description = ET.SubElement(channel, 'description')
+        description.text = 'Sharing Technology and Life'
+        
+        language = ET.SubElement(channel, 'language')
+        language.text = 'zh-CN'
+        
+        lastBuildDate = ET.SubElement(channel, 'lastBuildDate')
+        lastBuildDate.text = formatdate(localtime=True)
+        
+        # 添加文章
+        for post in posts:
+            item = ET.SubElement(channel, 'item')
+            
+            item_title = ET.SubElement(item, 'title')
+            item_title.text = post['title']
+            
+            item_link = ET.SubElement(item, 'link')
+            item_link.text = f"{self.site_url}/{post['url']}"
+            
+            item_guid = ET.SubElement(item, 'guid')
+            item_guid.text = f"{self.site_url}/{post['url']}"
+            
+            item_pubDate = ET.SubElement(item, 'pubDate')
+            # 处理日期可能是字符串或datetime.date的情况
+            if isinstance(post['date'], str):
+                pub_date = datetime.strptime(post['date'], '%Y-%m-%d')
+            else:
+                pub_date = datetime.combine(post['date'], datetime.min.time())
+            timestamp = pub_date.timestamp()
+            item_pubDate.text = formatdate(timestamp, localtime=True)
+            
+            # 获取文章内容
+            with open(os.path.join('posts', post['url'].replace('.html', '.md')), 'r', encoding='utf-8') as f:
+                post_content = frontmatter.load(f)
+                content_html = markdown2.markdown(post_content.content)
+            
+            item_description = ET.SubElement(item, 'description')
+            item_description.text = content_html
+            
+            if post.get('tags'):
+                for tag in post['tags']:
+                    category = ET.SubElement(item, 'category')
+                    category.text = tag
+        
+        # 生成 RSS 文件
+        tree = ET.ElementTree(rss)
+        tree.write('output/feed.xml', encoding='utf-8', xml_declaration=True)
 
     def copy_static_files(self):
         """复制静态文件到输出目录"""
@@ -96,6 +195,63 @@ class BlogGenerator:
         finally:
             os.chdir('..')
 
+    def build(self):
+        """构建博客"""
+        # 清理输出目录，保留.git
+        if os.path.exists('output'):
+            for item in os.listdir('output'):
+                if item != '.git':
+                    item_path = os.path.join('output', item)
+                    if os.path.isfile(item_path):
+                        os.remove(item_path)
+                    elif os.path.isdir(item_path):
+                        shutil.rmtree(item_path)
+        else:
+            os.makedirs('output')
+        
+        # 生成所有文章
+        posts = []
+        for filename in os.listdir('posts'):
+            if filename.endswith('.md'):
+                metadata = self.generate_post(filename)
+                posts.append({
+                    'title': metadata['title'],
+                    'date': metadata['date'],
+                    'tags': metadata['tags'],
+                    'url': os.path.splitext(filename)[0] + '.html'
+                })
+        
+        # 按日期排序文章
+        posts.sort(key=lambda x: x['date'], reverse=True)
+        
+        # 生成标签页面并获取标签统计
+        tag_posts = self.generate_tag_pages(posts)
+        
+        # 准备标签云数据
+        tags = []
+        for tag, tag_posts_list in tag_posts.items():
+            count = len(tag_posts_list)
+            safe_tag = tag.lower().replace(' ', '-')
+            tags.append({
+                'name': tag,
+                'count': count,
+                'url': f'/tags/{safe_tag}.html'
+            })
+        
+        # 按文章数量排序标签
+        tags.sort(key=lambda x: (-x['count'], x['name']))
+        
+        # 生成索引页
+        self.generate_index(posts, tags)
+        
+        # 生成 RSS feed
+        self.generate_rss(posts)
+        
+        # 复制静态文件
+        self.copy_static_files()
+        
+        print("Blog built successfully!")
+
 @click.group()
 def cli():
     """静态博客生成器命令行工具"""
@@ -111,41 +267,7 @@ def init():
 def build():
     """构建博客"""
     generator = BlogGenerator()
-    
-    # 清理输出目录，保留.git
-    if os.path.exists('output'):
-        for item in os.listdir('output'):
-            if item != '.git':
-                item_path = os.path.join('output', item)
-                if os.path.isfile(item_path):
-                    os.remove(item_path)
-                elif os.path.isdir(item_path):
-                    shutil.rmtree(item_path)
-    else:
-        os.makedirs('output')
-    
-    # 生成所有文章
-    posts = []
-    for filename in os.listdir('posts'):
-        if filename.endswith('.md'):
-            metadata = generator.generate_post(filename)
-            posts.append({
-                'title': metadata['title'],
-                'date': metadata['date'],
-                'tags': metadata['tags'],
-                'url': os.path.splitext(filename)[0] + '.html'
-            })
-    
-    # 按日期排序文章
-    posts.sort(key=lambda x: x['date'], reverse=True)
-    
-    # 生成索引页
-    generator.generate_index(posts)
-    
-    # 复制静态文件
-    generator.copy_static_files()
-    
-    print("Blog built successfully!")
+    generator.build()
 
 @cli.command()
 def deploy():
