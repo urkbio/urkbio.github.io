@@ -159,6 +159,60 @@ header .subtitle {
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.sidebar {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+}
+
+.tag-cloud {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tag-cloud h2 {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.tag-cloud-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag-cloud-content a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    transition: all 0.2s ease;
+}
+
+.tag-cloud-content a:hover {
+    color: #2980b9;
+}
+
+.tag-count {
+    font-size: 0.8em;
+    color: var(--meta-color);
+}
+
+.tag-size-1 { font-size: 0.8rem; }
+.tag-size-2 { font-size: 1rem; }
+.tag-size-3 { font-size: 1.2rem; }
+.tag-size-4 { font-size: 1.4rem; }
+.tag-size-5 { font-size: 1.6rem; }
+
 footer {
     text-align: center;
     margin-top: 3rem;
@@ -178,5 +232,14 @@ footer {
     
     .post {
         padding: 1.5rem;
+    }
+    
+    .content-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        position: static;
+        margin-top: 2rem;
     }
 }
