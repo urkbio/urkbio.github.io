@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Tue, 24 Dec 2024 04:23:38 +0800</lastBuildDate><item><title>first post</title><link>https://chiu.joomaen.top/first-post-20241224.html</link><guid>https://chiu.joomaen.top/first-post-20241224.html</guid><pubDate>Tue, 24 Dec 2024 00:00:00 +0800</pubDate><description>&lt;p&gt;this is a init file for test&lt;/p&gt;
+</description></item><item><title>hello</title><link>https://chiu.joomaen.top/hello-20241224.html</link><guid>https://chiu.joomaen.top/hello-20241224.html</guid><pubDate>Tue, 24 Dec 2024 00:00:00 +0800</pubDate><description>&lt;p&gt;hello
+Write your content here...&lt;/p&gt;
+</description></item><item><title>一个简单的静态博客</title><link>https://chiu.joomaen.top/一个简单的静态博客-20241224.html</link><guid>https://chiu.joomaen.top/一个简单的静态博客-20241224.html</guid><pubDate>Tue, 24 Dec 2024 00:00:00 +0800</pubDate><description>&lt;p&gt;今天用AI写了一个静态网页，效果很好，一把就好了，AI写前端一点压力都没有。&lt;/p&gt;
+
+&lt;p&gt;可是我不知道要展示些什么，于是就叫它改了改，做成一个静态博客。&lt;/p&gt;
+
+&lt;p&gt;相比单一静态网页，就多了一个Python写的博客生成程序，用命令行可以很方便的管理，基本的添加、删除、生成、部署都很方便。我的目标是一个极其简陋的程序，一点多的花里胡哨都不需要，只要能将我写的markdown文件渲染成网页并展示出来就好。现在看来已经很完善了。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;现在王让它添加RSS功能，应该就完善了。&lt;/p&gt;
+</description></item></channel></rss>

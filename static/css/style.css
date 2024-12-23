@@ -47,6 +47,25 @@ header .subtitle {
     font-size: 1.1rem;
 }
 
+.rss-link {
+    margin-top: 1rem;
+}
+
+.rss-link a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.rss-link a:hover {
+    background-color: #2980b9;
+}
+
 .posts-list {
     margin-bottom: 3rem;
 }
