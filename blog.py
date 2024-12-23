@@ -65,6 +65,11 @@ class BlogGenerator:
             if os.path.exists('output/static'):
                 shutil.rmtree('output/static')
             shutil.copytree('static', 'output/static')
+        
+        # 复制 CNAME 文件
+        cname_path = os.path.join('templates', 'CNAME')
+        if os.path.exists(cname_path):
+            shutil.copy2(cname_path, os.path.join('output', 'CNAME'))
 
     def deploy_to_github(self):
         """部署到GitHub Pages"""

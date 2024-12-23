@@ -71,6 +71,31 @@ git push -u origin gh-pages -f
 - 如果仓库名是 `<用户名>.github.io`：`https://<用户名>.github.io`
 - 如果是其他名称：`https://<用户名>.github.io/<仓库名>`
 
+## 配置自定义域名
+
+1. **创建 CNAME 文件**
+   - 在 `templates` 目录下创建 `CNAME` 文件
+   - 文件内容为你的域名，例如：`your-domain.com`
+
+2. **DNS 设置**
+   
+   对于根域名（`your-domain.com`），添加这些 A 记录：
+   ```
+   185.199.108.153
+   185.199.109.153
+   185.199.110.153
+   185.199.111.153
+   ```
+
+   对于子域名（如 `blog.your-domain.com`），添加 CNAME 记录：
+   - 类型：`CNAME`
+   - 主机记录：`blog`（或其他子域名）
+   - 记录值：`<你的用户名>.github.io`
+
+3. **等待 DNS 生效**
+   - DNS 更改可能需要最多 24 小时生效
+   - 可以使用 `dig` 或 `nslookup` 命令检查 DNS 是否已更新
+
 ## 后续更新博客
 
 1. 写新文章：`python blog.py new "文章标题"`
