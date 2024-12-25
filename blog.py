@@ -32,14 +32,24 @@ class BlogGenerator:
 
     def read_post(self, filename):
         """读取并解析markdown文件"""
-        with open(os.path.join('posts', filename), 'r', encoding='utf-8') as f:
+        file_path = os.path.join('posts', filename)
+        with open(file_path, 'r', encoding='utf-8') as f:
             post = frontmatter.load(f)
             
         # 设置默认元数据
         metadata = post.metadata
         metadata.setdefault('title', os.path.splitext(filename)[0])
-        metadata.setdefault('date', datetime.now().strftime('%Y-%m-%d'))
+        metadata.setdefault('date', datetime.fromtimestamp(os.path.getmtime(file_path)).strftime('%Y-%m-%d'))
+        
+        # 如果没有created_at，使用文件的修改时间
+        if 'created_at' not in metadata:
+            metadata['created_at'] = datetime.fromtimestamp(os.path.getmtime(file_path)).strftime('%Y-%m-%d %H:%M:%S')
+        
         metadata.setdefault('tags', [])
+
+        # 确保created_at是字符串格式
+        if isinstance(metadata['created_at'], datetime):
+            metadata['created_at'] = metadata['created_at'].strftime('%Y-%m-%d %H:%M:%S')
         
         # 转换内容
         content = markdown2.markdown(post.content, extras=['fenced-code-blocks', 'tables'])
@@ -88,7 +98,7 @@ class BlogGenerator:
         for tag, tag_posts_list in tag_posts.items():
             output = template.render(
                 tag=tag,
-                posts=sorted(tag_posts_list, key=lambda x: x['date'], reverse=True)
+                posts=sorted(tag_posts_list, key=lambda x: x['created_at'], reverse=True)
             )
             
             # 使用 URL 安全的文件名
@@ -134,8 +144,8 @@ class BlogGenerator:
             
             item_pubDate = ET.SubElement(item, 'pubDate')
             # 处理日期可能是字符串或datetime.date的情况
-            if isinstance(post['date'], str):
-                pub_date = datetime.strptime(post['date'], '%Y-%m-%d')
+            if isinstance(post['created_at'], str):
+                pub_date = datetime.strptime(post['created_at'], '%Y-%m-%d %H:%M:%S')
             else:
                 pub_date = datetime.combine(post['date'], datetime.min.time())
             timestamp = pub_date.timestamp()
@@ -218,11 +228,12 @@ class BlogGenerator:
                     'title': metadata['title'],
                     'date': metadata['date'],
                     'tags': metadata['tags'],
-                    'url': os.path.splitext(filename)[0] + '.html'
+                    'url': os.path.splitext(filename)[0] + '.html',
+                    'created_at': metadata['created_at']
                 })
         
-        # 按日期排序文章
-        posts.sort(key=lambda x: x['date'], reverse=True)
+        # 按创建时间排序文章
+        posts.sort(key=lambda x: x['created_at'], reverse=True)
         
         # 生成标签页面并获取标签统计
         tag_posts = self.generate_tag_pages(posts)
@@ -284,6 +295,7 @@ def new(title):
     template = f"""---
 title: {title}
 date: {current_time.strftime('%Y-%m-%d')}
+created_at: {current_time.strftime('%Y-%m-%d %H:%M:%S')}
 tags: []
 ---
 
