@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Wed, 25 Dec 2024 21:09:40 +0800</lastBuildDate><item><title>test-created-at</title><link>https://chiu.joomaen.top/test-created-at-20241225.html</link><guid>https://chiu.joomaen.top/test-created-at-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:07:55 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Wed, 25 Dec 2024 21:15:39 +0800</lastBuildDate><item><title>新版本更新</title><link>https://chiu.joomaen.top/新版本更新-20241225.html</link><guid>https://chiu.joomaen.top/新版本更新-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:12:42 +0800</pubDate><description>&lt;p&gt;今天修复了首页文章排列顺序异常的问题。
+在创建markdown文件时头部生成一个&lt;code&gt;create_at&lt;/code&gt;字段来显示创建时间，然后&lt;code&gt;build&lt;/code&gt;时检查这个字符来排序，从新到旧。&lt;/p&gt;
+</description><category>test</category></item><item><title>test-created-at</title><link>https://chiu.joomaen.top/test-created-at-20241225.html</link><guid>https://chiu.joomaen.top/test-created-at-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:07:55 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
 </description></item><item><title>test1</title><link>https://chiu.joomaen.top/test1-20241225.html</link><guid>https://chiu.joomaen.top/test1-20241225.html</guid><pubDate>Wed, 25 Dec 2024 20:55:41 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
 
 &lt;p&gt;第二次测试&lt;/p&gt;
