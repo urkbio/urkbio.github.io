@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sat, 28 Dec 2024 23:54:01 +0800</lastBuildDate><item><title>Nostr etc</title><link>https://chiu.joomaen.top/nostr-etc-20241228.html</link><guid>https://chiu.joomaen.top/nostr-etc-20241228.html</guid><pubDate>Sat, 28 Dec 2024 23:44:31 +0800</pubDate><description>&lt;p&gt;今天偶然看到一个博客主在使用Nostr，我在它刚出来时也关注过，当时的密钥也早已经找不到了。今天重新试用了一下，发现好复杂，不如传统的Mastodon和Misskey这种。当然它貌似没有一个中心服务器，你在客户端的操作必须链接到至少一个中继服务器，才能被其他人看到。当然也可以自建一个服务器自己使用，据说这种协议不需要存储其他服务器的内容，只有处于同一个中继才能相互发现？我搞不太明白。&lt;/p&gt;
+
+&lt;p&gt;除了刚出来时候许多人在使用，现在不知道还有多少热衷于中Nostr的，感觉不是很成熟，虽然这个理念比Mastodon这种更加先进，但也有不少问题。也会发生被盗用账户的情况。&lt;/p&gt;
+
+&lt;p&gt;最近刷小红书比较多，才发现小红书的算法推荐如此严重，以前我认为算法推荐是好的，能更好的帮助你在网络上发现有共同爱好的人，发现你想关注的事物。可是我发现无论如何，最终都是广告，现在更多的是那种软广，我现在已经不敢相信任何人的分享了，潜意识里觉得他说这个东西好肯定是推销，虽然不尽如此。&lt;/p&gt;
+</description><category>nostr</category></item><item><title>verity</title><link>https://chiu.joomaen.top/verity-20241224.html</link><guid>https://chiu.joomaen.top/verity-20241224.html</guid><pubDate>Sat, 28 Dec 2024 23:32:48 +0800</pubDate><description>&lt;p&gt;This message is used to verify that this feed (feedId:94115645064285184) belongs to me (userId:72254986268311552). Join me in enjoying the next generation information browser https://follow.is.&lt;/p&gt;
+</description><category>verity</category></item><item><title>一个简单的静态博客</title><link>https://chiu.joomaen.top/一个简单的静态博客-20241224.html</link><guid>https://chiu.joomaen.top/一个简单的静态博客-20241224.html</guid><pubDate>Sat, 28 Dec 2024 23:32:48 +0800</pubDate><description>&lt;p&gt;今天用AI写了一个静态网页，效果很好，一把就好了，AI写前端一点压力都没有。&lt;/p&gt;
+
+&lt;p&gt;可是我不知道要展示些什么，于是就叫它改了改，做成一个静态博客。&lt;/p&gt;
+
+&lt;p&gt;相比单一静态网页，就多了一个Python写的博客生成程序，用命令行可以很方便的管理，基本的添加、删除、生成、部署都很方便。我的目标是一个极其简陋的程序，一点多的花里胡哨都不需要，只要能将我写的markdown文件渲染成网页并展示出来就好。现在看来已经很完善了。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;现在王让它添加RSS功能，应该就完善了。&lt;/p&gt;
+</description></item><item><title>新版本更新</title><link>https://chiu.joomaen.top/新版本更新-20241225.html</link><guid>https://chiu.joomaen.top/新版本更新-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:12:42 +0800</pubDate><description>&lt;p&gt;今天修复了首页文章排列顺序异常的问题。
+在创建markdown文件时头部生成一个&lt;code&gt;create_at&lt;/code&gt;字段来显示创建时间，然后&lt;code&gt;build&lt;/code&gt;时检查这个字符来排序，从新到旧。&lt;/p&gt;
+</description><category>test</category></item><item><title>test-created-at</title><link>https://chiu.joomaen.top/test-created-at-20241225.html</link><guid>https://chiu.joomaen.top/test-created-at-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:07:55 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
+</description></item><item><title>test1</title><link>https://chiu.joomaen.top/test1-20241225.html</link><guid>https://chiu.joomaen.top/test1-20241225.html</guid><pubDate>Wed, 25 Dec 2024 20:55:41 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
+
+&lt;p&gt;第二次测试&lt;/p&gt;
+</description><category>test</category></item><item><title>newtest</title><link>https://chiu.joomaen.top/newtest-20241225.html</link><guid>https://chiu.joomaen.top/newtest-20241225.html</guid><pubDate>Wed, 25 Dec 2024 20:41:57 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
+
+&lt;p&gt;this test file is used to check the update order.&lt;/p&gt;
+</description><category>test</category></item></channel></rss>
