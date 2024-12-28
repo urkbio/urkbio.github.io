@@ -60,6 +60,7 @@ git branch -M gh-pages
 git remote add origin <你的仓库URL>
 git push -u origin gh-pages -f
 ```
+**将源码目录务必推送到GitHub，/posts文件夹中有markdown文件，如果此文件丢失，下次构建时旧文章会丢失**
 
 5. **设置 GitHub Pages**
    - 去到你的 GitHub 仓库设置
