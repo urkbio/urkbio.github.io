@@ -9,12 +9,45 @@
 pip install -r requirements.txt
 ```
 
+> Mac OS上python不允许直接`pip3 install ***`，需要使用虚拟环境安装
+>
+> 1. 首先，让我们创建一个新的虚拟环境。我会在当前目录下创建一个名为 `venv` 的虚拟环境：
+>
+> ~/Documents/Code/urkbio.github.io
+>
+> ```
+> $ python3 -m venv venv
+> ```
+>
+> 
+>
+> 2. 现在虚拟环境已经创建好了，让我们激活它。在 macOS 上，使用以下命令激活虚拟环境：
+>
+> ~/Documents/Code/urkbio.github.io
+>
+> ```
+> $ source venv/bin/activate
+> ```
+>
+> 3. 激活后，你会看到命令提示符前面出现 `(venv)`，这表示你已经在虚拟环境中了。
+>
+>    在虚拟环境中，你可以：
+>
+>    - 使用 `pip install` 安装包，它们会被安装到虚拟环境中，不会影响系统的 Python 环境。
+>
+>      运行`pip3 install -r requirements.txt`或`pip install -r requirements.txt`
+>
+>    - 使用 `pip list` 查看已安装的包
+>
+>    - 使用 `python` 运行程序
+
 2. **在 GitHub 上创建新仓库**
    - 登录 GitHub
    - 创建新仓库，名称可以是 `<你的用户名>.github.io` 或任意名称
    - 不要初始化仓库（不要添加 README、.gitignore 等文件）
 
 3. **初始化本地仓库**
+
 ```bash
 git init
 git add .
