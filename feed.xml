@@ -1,30 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Wed, 25 Dec 2024 23:35:17 +0800</lastBuildDate><item><title>AI写代码体验</title><link>https://chiu.joomaen.top/ai写代码体验-20241225.html</link><guid>https://chiu.joomaen.top/ai写代码体验-20241225.html</guid><pubDate>Wed, 25 Dec 2024 23:34:26 +0800</pubDate><description>&lt;p&gt;这几天除了使用Cursor，我还发现了另一款AI写代码程序，叫windsurf。我两款都体验了，做了几个小工具，今天详细跟大家聊聊使用的感受吧。后面再跟大家分享下用windsurf新开发的静态博客程序。&lt;/p&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sat, 28 Dec 2024 23:54:01 +0800</lastBuildDate><item><title>Nostr etc</title><link>https://chiu.joomaen.top/nostr-etc-20241228.html</link><guid>https://chiu.joomaen.top/nostr-etc-20241228.html</guid><pubDate>Sat, 28 Dec 2024 23:44:31 +0800</pubDate><description>&lt;p&gt;今天偶然看到一个博客主在使用Nostr，我在它刚出来时也关注过，当时的密钥也早已经找不到了。今天重新试用了一下，发现好复杂，不如传统的Mastodon和Misskey这种。当然它貌似没有一个中心服务器，你在客户端的操作必须链接到至少一个中继服务器，才能被其他人看到。当然也可以自建一个服务器自己使用，据说这种协议不需要存储其他服务器的内容，只有处于同一个中继才能相互发现？我搞不太明白。&lt;/p&gt;
 
-&lt;p&gt;首先我先用的cursor，最开始写了几个简单的命令行工具，比如把配置文件的json和YAML相互转换，还有视频音频不同格式的转换，都是很快，基本上对话一两次就能运行了，所以AI处理这些很简单的需求是很容易的。之后我又把音视频格式转换这个程序做成了桌面端APP，有了一个图形界面，像一个简化版的格式工厂。这个步骤也没有很麻烦。&lt;/p&gt;
+&lt;p&gt;除了刚出来时候许多人在使用，现在不知道还有多少热衷于中Nostr的，感觉不是很成熟，虽然这个理念比Mastodon这种更加先进，但也有不少问题。也会发生被盗用账户的情况。&lt;/p&gt;
 
-&lt;p&gt;再之后呢，我就想做一个类似ADGUARD home的DNS工具，后面也做出来了。像基础的缓存、指定上游、web界面、统计数据都有了。不过到后面功能一多起来，就有点力不从心了，有时候改十几次都无法修好一个问题，比如使用Redis作为DNS缓存，开始有一版能用，我是用的内置redis-server.exe来实现的，不过当我想编译到Linux版本运行在服务器上时就一直出错，不管是用WSL2还是用Ubuntu的服务器，当然我把redis-server可执行文件换成了Linux版，给了权限，就是无法启动。后面我又把Redis给去掉了。还有前端界面，我让它给我用一个柱状图和一个曲线图来展示统计数据，也搞了许久，总是无法读取到数据。&lt;/p&gt;
-
-&lt;p&gt;反正越是复杂就越不智能，这与我在网上看到的cursor的牛逼感觉不太一样。或许因为我不会写代码，可那些一周做出app并上架的人也说自己是小白啊。&lt;/p&gt;
-
-&lt;p&gt;在DNS那个程序一直无法按我的需求运行时，我也没有心思搞下去了。不过这时我看到了windsurf，这个也是类似cursor的魔改VSCode的东西，我安装下来，本来对它期望不大，因为许多人说cursor更好。但实际用下来才发现，windsurf在理解已有文件上比cursor好得多。我把用cursor写的文件夹导入windsurf，它可以读取项目文件，告诉我这个程序是做什么的，还能给出修改意见。于是我叫它给我做了一个静态网页，本来是想做出个人主页哪种，但我不知道应该放些什么，就索性让它再改改，做成一个静态博客。它还很贴心的告诉我如何部署到GitHub pages上，一切都很顺利。我觉得比cursor好的点是，它在修bug时可以检查所有相关联的文件从而找到问题所在，并且修改时也会同时修改有关的好几个文件。而用cursor的话，就算我一直@codebase，他也不是能从项目整体的角度来分析问题。&lt;/p&gt;
-
-&lt;p&gt;尽管windsurf在开发上很快，基本上一个需求就对话一两次就好了，唯一一个问题，就是博客主页面的排序问题，好几次都没修好，我发现原来是它没有权限读取到编译好的output文件夹的前端文件代码，我把代码复制给它，他就一下子找到了问题并解决了。就这也没有多少次调试，比起我用一晚上cursor做不好DNS数据统计显示来说强多了。但它也没那么牛逼，我把DNS程序的代码给它看，也半天整不出来，或许是项目稍微复杂点就力不从心了。&lt;/p&gt;
-
-&lt;p&gt;我昨天到今天做的这个静态博客程序，我打算把它作为自己博客的一个备份，一直放在GitHub，我就一切从简，只做了基本的标签和RSS功能。目前就先这样吧，后面想起什么比较必要的功能再交给AI来实现。&lt;/p&gt;
-
-&lt;p&gt;由于cursor和windsurf都是付费软件，免费体验额度不够用，我是闲鱼合租的，不到20一个月，虽说有次数限制，不过我目前还没用超。&lt;/p&gt;
-</description><category>体验分享</category></item><item><title>新版本更新</title><link>https://chiu.joomaen.top/新版本更新-20241225.html</link><guid>https://chiu.joomaen.top/新版本更新-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:12:42 +0800</pubDate><description>&lt;p&gt;今天修复了首页文章排列顺序异常的问题。
-在创建markdown文件时头部生成一个&lt;code&gt;create_at&lt;/code&gt;字段来显示创建时间，然后&lt;code&gt;build&lt;/code&gt;时检查这个字符来排序，从新到旧。&lt;/p&gt;
-</description><category>test</category></item><item><title>test-created-at</title><link>https://chiu.joomaen.top/test-created-at-20241225.html</link><guid>https://chiu.joomaen.top/test-created-at-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:07:55 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
-</description></item><item><title>test1</title><link>https://chiu.joomaen.top/test1-20241225.html</link><guid>https://chiu.joomaen.top/test1-20241225.html</guid><pubDate>Wed, 25 Dec 2024 20:55:41 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
-
-&lt;p&gt;第二次测试&lt;/p&gt;
-</description><category>test</category></item><item><title>newtest</title><link>https://chiu.joomaen.top/newtest-20241225.html</link><guid>https://chiu.joomaen.top/newtest-20241225.html</guid><pubDate>Wed, 25 Dec 2024 20:41:57 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
-
-&lt;p&gt;this test file is used to check the update order.&lt;/p&gt;
-</description><category>test</category></item><item><title>verity</title><link>https://chiu.joomaen.top/verity-20241224.html</link><guid>https://chiu.joomaen.top/verity-20241224.html</guid><pubDate>Tue, 24 Dec 2024 04:31:04 +0800</pubDate><description>&lt;p&gt;This message is used to verify that this feed (feedId:94115645064285184) belongs to me (userId:72254986268311552). Join me in enjoying the next generation information browser https://follow.is.&lt;/p&gt;
-</description><category>verity</category></item><item><title>一个简单的静态博客</title><link>https://chiu.joomaen.top/一个简单的静态博客-20241224.html</link><guid>https://chiu.joomaen.top/一个简单的静态博客-20241224.html</guid><pubDate>Tue, 24 Dec 2024 04:20:49 +0800</pubDate><description>&lt;p&gt;今天用AI写了一个静态网页，效果很好，一把就好了，AI写前端一点压力都没有。&lt;/p&gt;
+&lt;p&gt;最近刷小红书比较多，才发现小红书的算法推荐如此严重，以前我认为算法推荐是好的，能更好的帮助你在网络上发现有共同爱好的人，发现你想关注的事物。可是我发现无论如何，最终都是广告，现在更多的是那种软广，我现在已经不敢相信任何人的分享了，潜意识里觉得他说这个东西好肯定是推销，虽然不尽如此。&lt;/p&gt;
+</description><category>nostr</category></item><item><title>verity</title><link>https://chiu.joomaen.top/verity-20241224.html</link><guid>https://chiu.joomaen.top/verity-20241224.html</guid><pubDate>Sat, 28 Dec 2024 23:32:48 +0800</pubDate><description>&lt;p&gt;This message is used to verify that this feed (feedId:94115645064285184) belongs to me (userId:72254986268311552). Join me in enjoying the next generation information browser https://follow.is.&lt;/p&gt;
+</description><category>verity</category></item><item><title>一个简单的静态博客</title><link>https://chiu.joomaen.top/一个简单的静态博客-20241224.html</link><guid>https://chiu.joomaen.top/一个简单的静态博客-20241224.html</guid><pubDate>Sat, 28 Dec 2024 23:32:48 +0800</pubDate><description>&lt;p&gt;今天用AI写了一个静态网页，效果很好，一把就好了，AI写前端一点压力都没有。&lt;/p&gt;
 
 &lt;p&gt;可是我不知道要展示些什么，于是就叫它改了改，做成一个静态博客。&lt;/p&gt;
 
@@ -33,4 +14,13 @@
 &lt;hr /&gt;
 
 &lt;p&gt;现在王让它添加RSS功能，应该就完善了。&lt;/p&gt;
-</description></item></channel></rss>
+</description></item><item><title>新版本更新</title><link>https://chiu.joomaen.top/新版本更新-20241225.html</link><guid>https://chiu.joomaen.top/新版本更新-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:12:42 +0800</pubDate><description>&lt;p&gt;今天修复了首页文章排列顺序异常的问题。
+在创建markdown文件时头部生成一个&lt;code&gt;create_at&lt;/code&gt;字段来显示创建时间，然后&lt;code&gt;build&lt;/code&gt;时检查这个字符来排序，从新到旧。&lt;/p&gt;
+</description><category>test</category></item><item><title>test-created-at</title><link>https://chiu.joomaen.top/test-created-at-20241225.html</link><guid>https://chiu.joomaen.top/test-created-at-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:07:55 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
+</description></item><item><title>test1</title><link>https://chiu.joomaen.top/test1-20241225.html</link><guid>https://chiu.joomaen.top/test1-20241225.html</guid><pubDate>Wed, 25 Dec 2024 20:55:41 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
+
+&lt;p&gt;第二次测试&lt;/p&gt;
+</description><category>test</category></item><item><title>newtest</title><link>https://chiu.joomaen.top/newtest-20241225.html</link><guid>https://chiu.joomaen.top/newtest-20241225.html</guid><pubDate>Wed, 25 Dec 2024 20:41:57 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
+
+&lt;p&gt;this test file is used to check the update order.&lt;/p&gt;
+</description><category>test</category></item></channel></rss>
