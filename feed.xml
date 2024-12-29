@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sun, 29 Dec 2024 14:43:32 +0800</lastBuildDate><item><title>搭建一个简单的NOSTR中继器</title><link>https://chiu.joomaen.top/搭建一个简单的nostr中继器-20241229.html</link><guid>https://chiu.joomaen.top/搭建一个简单的nostr中继器-20241229.html</guid><pubDate>Sun, 29 Dec 2024 14:41:30 +0800</pubDate><description>&lt;h1&gt;搭建一个简单的Nostr中继器&lt;/h1&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sun, 29 Dec 2024 15:05:28 +0800</lastBuildDate><item><title>更新目录结构</title><link>https://chiu.joomaen.top/posts/更新目录结构-20241229.html</link><guid>https://chiu.joomaen.top/posts/更新目录结构-20241229.html</guid><pubDate>Sun, 29 Dec 2024 15:04:24 +0800</pubDate><description>&lt;p&gt;修改博客输出目录结构，所有HTML文件将在一个文件夹中，更美观&lt;/p&gt;
+</description><category>blog</category><category>test</category></item><item><title>搭建一个简单的NOSTR中继器</title><link>https://chiu.joomaen.top/posts/搭建一个简单的nostr中继器-20241229.html</link><guid>https://chiu.joomaen.top/posts/搭建一个简单的nostr中继器-20241229.html</guid><pubDate>Sun, 29 Dec 2024 14:41:30 +0800</pubDate><description>&lt;h1&gt;搭建一个简单的Nostr中继器&lt;/h1&gt;
 
 &lt;h3&gt;使用项目：&lt;a href="https://code.pobblelabs.org/nostr_relay/index"&gt;nostr relay&lt;/a&gt; 一个python写的程序&lt;/h3&gt;
 
@@ -121,13 +122,13 @@ systemctl status nostr-relay
 &lt;li&gt;&lt;p&gt;设置开机自启 &lt;code&gt;systemctl enable nostr-relay&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;&lt;/li&gt;
 &lt;/ol&gt;
-</description><category>nostr</category><category>服务器</category><category>linux</category></item><item><title>博客文件丢失</title><link>https://chiu.joomaen.top/博客文件丢失-20241229.html</link><guid>https://chiu.joomaen.top/博客文件丢失-20241229.html</guid><pubDate>Sun, 29 Dec 2024 00:35:09 +0800</pubDate><description>&lt;p&gt;我之前用AI写了个简陋的静态博客程序，用python来构建，将本地markdown文件可以转为HTML并可以很方便的托管到GitHub pages。&lt;/p&gt;
+</description><category>nostr</category><category>服务器</category><category>linux</category></item><item><title>博客文件丢失</title><link>https://chiu.joomaen.top/posts/博客文件丢失-20241229.html</link><guid>https://chiu.joomaen.top/posts/博客文件丢失-20241229.html</guid><pubDate>Sun, 29 Dec 2024 00:35:09 +0800</pubDate><description>&lt;p&gt;我之前用AI写了个简陋的静态博客程序，用python来构建，将本地markdown文件可以转为HTML并可以很方便的托管到GitHub pages。&lt;/p&gt;
 
 &lt;p&gt;我之前使用windows笔记本运行的，现在换了Mac，我想把仓库clone下来不就行了。不过遇到些问题，尽管clone了所有分支，不过没有将gh-pages分支绑定到&lt;code&gt;./output&lt;/code&gt;文件夹，好在有AI，用一个命令解决了 &lt;code&gt;git worktree add output gh-pages&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;我以为都万事大吉了，写了一篇build好了，准备推送到GitHub，可是推送之后我发现有的文章丢失了。我发现是因为这次构建时完全使用的GitHub上的文件和我新建的这一个，不过我上次写的markdown文件并没有推送到GitHub，我只把gh-pages分支推送了，master分支并没有推送，所以markdown源文件就不存在了，于是构建出来的HTML当然也不会显示这些旧文件。&lt;/p&gt;
-</description><category>博客</category></item><item><title>verity</title><link>https://chiu.joomaen.top/verity-20241224.html</link><guid>https://chiu.joomaen.top/verity-20241224.html</guid><pubDate>Sun, 29 Dec 2024 00:03:17 +0800</pubDate><description>&lt;p&gt;This message is used to verify that this feed (feedId:94115645064285184) belongs to me (userId:72254986268311552). Join me in enjoying the next generation information browser https://follow.is.&lt;/p&gt;
-</description><category>verity</category></item><item><title>一个简单的静态博客</title><link>https://chiu.joomaen.top/一个简单的静态博客-20241224.html</link><guid>https://chiu.joomaen.top/一个简单的静态博客-20241224.html</guid><pubDate>Sun, 29 Dec 2024 00:03:17 +0800</pubDate><description>&lt;p&gt;今天用AI写了一个静态网页，效果很好，一把就好了，AI写前端一点压力都没有。&lt;/p&gt;
+</description><category>博客</category></item><item><title>verity</title><link>https://chiu.joomaen.top/posts/verity-20241224.html</link><guid>https://chiu.joomaen.top/posts/verity-20241224.html</guid><pubDate>Sun, 29 Dec 2024 00:03:17 +0800</pubDate><description>&lt;p&gt;This message is used to verify that this feed (feedId:94115645064285184) belongs to me (userId:72254986268311552). Join me in enjoying the next generation information browser https://follow.is.&lt;/p&gt;
+</description><category>verity</category></item><item><title>一个简单的静态博客</title><link>https://chiu.joomaen.top/posts/一个简单的静态博客-20241224.html</link><guid>https://chiu.joomaen.top/posts/一个简单的静态博客-20241224.html</guid><pubDate>Sun, 29 Dec 2024 00:03:17 +0800</pubDate><description>&lt;p&gt;今天用AI写了一个静态网页，效果很好，一把就好了，AI写前端一点压力都没有。&lt;/p&gt;
 
 &lt;p&gt;可是我不知道要展示些什么，于是就叫它改了改，做成一个静态博客。&lt;/p&gt;
 
@@ -136,12 +137,12 @@ systemctl status nostr-relay
 &lt;hr /&gt;
 
 &lt;p&gt;现在王让它添加RSS功能，应该就完善了。&lt;/p&gt;
-</description></item><item><title>Nostr etc</title><link>https://chiu.joomaen.top/nostr-etc-20241228.html</link><guid>https://chiu.joomaen.top/nostr-etc-20241228.html</guid><pubDate>Sat, 28 Dec 2024 23:44:31 +0800</pubDate><description>&lt;p&gt;今天偶然看到一个博客主在使用Nostr，我在它刚出来时也关注过，当时的密钥也早已经找不到了。今天重新试用了一下，发现好复杂，不如传统的Mastodon和Misskey这种。当然它貌似没有一个中心服务器，你在客户端的操作必须链接到至少一个中继服务器，才能被其他人看到。当然也可以自建一个服务器自己使用，据说这种协议不需要存储其他服务器的内容，只有处于同一个中继才能相互发现？我搞不太明白。&lt;/p&gt;
+</description></item><item><title>Nostr etc</title><link>https://chiu.joomaen.top/posts/nostr-etc-20241228.html</link><guid>https://chiu.joomaen.top/posts/nostr-etc-20241228.html</guid><pubDate>Sat, 28 Dec 2024 23:44:31 +0800</pubDate><description>&lt;p&gt;今天偶然看到一个博客主在使用Nostr，我在它刚出来时也关注过，当时的密钥也早已经找不到了。今天重新试用了一下，发现好复杂，不如传统的Mastodon和Misskey这种。当然它貌似没有一个中心服务器，你在客户端的操作必须链接到至少一个中继服务器，才能被其他人看到。当然也可以自建一个服务器自己使用，据说这种协议不需要存储其他服务器的内容，只有处于同一个中继才能相互发现？我搞不太明白。&lt;/p&gt;
 
 &lt;p&gt;除了刚出来时候许多人在使用，现在不知道还有多少热衷于中Nostr的，感觉不是很成熟，虽然这个理念比Mastodon这种更加先进，但也有不少问题。也会发生被盗用账户的情况。&lt;/p&gt;
 
 &lt;p&gt;最近刷小红书比较多，才发现小红书的算法推荐如此严重，以前我认为算法推荐是好的，能更好的帮助你在网络上发现有共同爱好的人，发现你想关注的事物。可是我发现无论如何，最终都是广告，现在更多的是那种软广，我现在已经不敢相信任何人的分享了，潜意识里觉得他说这个东西好肯定是推销，虽然不尽如此。&lt;/p&gt;
-</description><category>nostr</category></item><item><title>AI写代码体验</title><link>https://chiu.joomaen.top/ai写代码体验-20241225.html</link><guid>https://chiu.joomaen.top/ai写代码体验-20241225.html</guid><pubDate>Wed, 25 Dec 2024 23:34:26 +0800</pubDate><description>&lt;p&gt;这几天除了使用Cursor，我还发现了另一款AI写代码程序，叫windsurf。我两款都体验了，做了几个小工具，今天详细跟大家聊聊使用的感受吧。后面再跟大家分享下用windsurf新开发的静态博客程序。&lt;/p&gt;
+</description><category>nostr</category></item><item><title>AI写代码体验</title><link>https://chiu.joomaen.top/posts/ai写代码体验-20241225.html</link><guid>https://chiu.joomaen.top/posts/ai写代码体验-20241225.html</guid><pubDate>Wed, 25 Dec 2024 23:34:26 +0800</pubDate><description>&lt;p&gt;这几天除了使用Cursor，我还发现了另一款AI写代码程序，叫windsurf。我两款都体验了，做了几个小工具，今天详细跟大家聊聊使用的感受吧。后面再跟大家分享下用windsurf新开发的静态博客程序。&lt;/p&gt;
 
 &lt;p&gt;首先我先用的cursor，最开始写了几个简单的命令行工具，比如把配置文件的json和YAML相互转换，还有视频音频不同格式的转换，都是很快，基本上对话一两次就能运行了，所以AI处理这些很简单的需求是很容易的。之后我又把音视频格式转换这个程序做成了桌面端APP，有了一个图形界面，像一个简化版的格式工厂。这个步骤也没有很麻烦。&lt;/p&gt;
 
@@ -156,13 +157,13 @@ systemctl status nostr-relay
 &lt;p&gt;我昨天到今天做的这个静态博客程序，我打算把它作为自己博客的一个备份，一直放在GitHub，我就一切从简，只做了基本的标签和RSS功能。目前就先这样吧，后面想起什么比较必要的功能再交给AI来实现。&lt;/p&gt;
 
 &lt;p&gt;由于cursor和windsurf都是付费软件，免费体验额度不够用，我是闲鱼合租的，不到20一个月，虽说有次数限制，不过我目前还没用超。&lt;/p&gt;
-</description><category>体验分享</category></item><item><title>新版本更新</title><link>https://chiu.joomaen.top/新版本更新-20241225.html</link><guid>https://chiu.joomaen.top/新版本更新-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:12:42 +0800</pubDate><description>&lt;p&gt;今天修复了首页文章排列顺序异常的问题。
+</description><category>体验分享</category></item><item><title>新版本更新</title><link>https://chiu.joomaen.top/posts/新版本更新-20241225.html</link><guid>https://chiu.joomaen.top/posts/新版本更新-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:12:42 +0800</pubDate><description>&lt;p&gt;今天修复了首页文章排列顺序异常的问题。
 在创建markdown文件时头部生成一个&lt;code&gt;create_at&lt;/code&gt;字段来显示创建时间，然后&lt;code&gt;build&lt;/code&gt;时检查这个字符来排序，从新到旧。&lt;/p&gt;
-</description><category>test</category></item><item><title>test-created-at</title><link>https://chiu.joomaen.top/test-created-at-20241225.html</link><guid>https://chiu.joomaen.top/test-created-at-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:07:55 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
-</description></item><item><title>test1</title><link>https://chiu.joomaen.top/test1-20241225.html</link><guid>https://chiu.joomaen.top/test1-20241225.html</guid><pubDate>Wed, 25 Dec 2024 20:55:41 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
+</description><category>test</category></item><item><title>test-created-at</title><link>https://chiu.joomaen.top/posts/test-created-at-20241225.html</link><guid>https://chiu.joomaen.top/posts/test-created-at-20241225.html</guid><pubDate>Wed, 25 Dec 2024 21:07:55 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
+</description></item><item><title>test1</title><link>https://chiu.joomaen.top/posts/test1-20241225.html</link><guid>https://chiu.joomaen.top/posts/test1-20241225.html</guid><pubDate>Wed, 25 Dec 2024 20:55:41 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
 
 &lt;p&gt;第二次测试&lt;/p&gt;
-</description><category>test</category></item><item><title>newtest</title><link>https://chiu.joomaen.top/newtest-20241225.html</link><guid>https://chiu.joomaen.top/newtest-20241225.html</guid><pubDate>Wed, 25 Dec 2024 20:41:57 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
+</description><category>test</category></item><item><title>newtest</title><link>https://chiu.joomaen.top/posts/newtest-20241225.html</link><guid>https://chiu.joomaen.top/posts/newtest-20241225.html</guid><pubDate>Wed, 25 Dec 2024 20:41:57 +0800</pubDate><description>&lt;p&gt;Write your content here...&lt;/p&gt;
 
 &lt;p&gt;this test file is used to check the update order.&lt;/p&gt;
 </description><category>test</category></item></channel></rss>
