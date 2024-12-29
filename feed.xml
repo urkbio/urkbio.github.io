@@ -1,5 +1,127 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sun, 29 Dec 2024 00:39:54 +0800</lastBuildDate><item><title>博客文件丢失</title><link>https://chiu.joomaen.top/博客文件丢失-20241229.html</link><guid>https://chiu.joomaen.top/博客文件丢失-20241229.html</guid><pubDate>Sun, 29 Dec 2024 00:35:09 +0800</pubDate><description>&lt;p&gt;我之前用AI写了个简陋的静态博客程序，用python来构建，将本地markdown文件可以转为HTML并可以很方便的托管到GitHub pages。&lt;/p&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sun, 29 Dec 2024 14:43:32 +0800</lastBuildDate><item><title>搭建一个简单的NOSTR中继器</title><link>https://chiu.joomaen.top/搭建一个简单的nostr中继器-20241229.html</link><guid>https://chiu.joomaen.top/搭建一个简单的nostr中继器-20241229.html</guid><pubDate>Sun, 29 Dec 2024 14:41:30 +0800</pubDate><description>&lt;h1&gt;搭建一个简单的Nostr中继器&lt;/h1&gt;
+
+&lt;h3&gt;使用项目：&lt;a href="https://code.pobblelabs.org/nostr_relay/index"&gt;nostr relay&lt;/a&gt; 一个python写的程序&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;使用&lt;code&gt;pip&lt;/code&gt;安装：&lt;code&gt;pip install nostr-relay&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;新建一个目录&lt;code&gt;mkdir /opt/nostr&lt;/code&gt;，并进入目录 &lt;code&gt;cd /opt/nostr&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;创建一个配置文件，&lt;a href="https://code.pobblelabs.org/nostr_relay/file?name=nostr_relay/config.yaml"&gt;参考官方默认配置&lt;/a&gt; ，我的配置如下，修改了一点&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;```yaml
+  DEBUG: false&lt;/p&gt;
+  
+  &lt;p&gt;relay&lt;em&gt;name: python relay
+  relay&lt;/em&gt;description: relay written in python
+  sysop&lt;em&gt;pubkey: 
+  sysop&lt;/em&gt;contact: &lt;/p&gt;
+  
+  &lt;p&gt;storage:
+    sqlalchemy.url: sqlite+aiosqlite:///nostr.sqlite3
+    # the number of concurrent REQ queries sent to the db
+    num&lt;em&gt;concurrent&lt;/em&gt;reqs: 10
+    # the number of concurrent event saves. (sqlite can only support 1 writer at a time)
+    num&lt;em&gt;concurrent&lt;/em&gt;adds: 2
+    validators:
+      - nostr&lt;em&gt;relay.validators.is&lt;/em&gt;not&lt;em&gt;too&lt;/em&gt;large
+      - nostr&lt;em&gt;relay.validators.is&lt;/em&gt;signed
+      - nostr&lt;em&gt;relay.validators.is&lt;/em&gt;recent
+      - nostr&lt;em&gt;relay.validators.is&lt;/em&gt;not_hellthread&lt;/p&gt;
+  
+  &lt;p&gt;verification:
+    # options are disabled, passive, enabled
+    nip05&lt;em&gt;verification: disabled
+    expiration: 86400 * 30
+    update&lt;/em&gt;frequency: 3600
+    #blacklist:
+    # - badhost.biz
+    #whitelist:
+    # - goodhost.com&lt;/p&gt;
+  
+  &lt;p&gt;gunicorn:
+    bind: 127.0.0.1:6969
+    workers: 1
+    loglevel: info
+    reload: false&lt;/p&gt;
+  
+  &lt;p&gt;purple:
+    host: 127.0.0.1
+    port: 6969
+    workers: 1
+    disable_compression: true&lt;/p&gt;
+  
+  &lt;h1&gt;see docs/authentication.md&lt;/h1&gt;
+  
+  &lt;p&gt;authentication:
+    enabled: false
+    relay_urls: 
+      - ws://localhost:6969
+      - ws://127.0.0.1:6969
+      # 可以换成 ws://公网IP:6969
+      - wss://yourdomain.name
+    actions:
+      save: a
+      query: a&lt;/p&gt;
+  
+  &lt;h1&gt;number of seconds to allow between client messages&lt;/h1&gt;
+  
+  &lt;p&gt;message_timeout: 1800&lt;/p&gt;
+  
+  &lt;h1&gt;number of open subscriptions per connection&lt;/h1&gt;
+  
+  &lt;p&gt;subscription_limit: 32&lt;/p&gt;
+  
+  &lt;h1&gt;set this to a private key used for internal control events&lt;/h1&gt;
+  
+  &lt;h1&gt;service_privatekey: 9627da965699a2a3048f97b77df5047e8cd0d11daca75e7687d0b28b65416a3c&lt;/h1&gt;
+  
+  &lt;h1&gt;set this to limit the number of events returned per REQ&lt;/h1&gt;
+  
+  &lt;p&gt;max_limit: 6000&lt;/p&gt;
+  
+  &lt;h1&gt;set this to the maximum number of "p" tags in an event&lt;/h1&gt;
+  
+  &lt;p&gt;hellthread_limit: 100
+  ```&lt;/p&gt;
+&lt;/blockquote&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用你喜欢的反向代理工具，配合域名使用。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用systemd管理&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;创建service文件 &lt;code&gt;vim /etc/systemd/system/nostr-relay.service&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;内容为&lt;/p&gt;
+
+&lt;p&gt;```
+[Unit]
+Description=Nostr Relay Service
+After=network.target&lt;/p&gt;
+
+&lt;p&gt;[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/nostr
+ExecStart=/usr/local/bin/nostr-relay -c /opt/nostr/config.yaml serve
+Restart=always
+RestartSec=5
+StandardOutput=append:/opt/nostr/nostr-relay.log
+StandardError=append:/opt/nostr/nostr-relay-error.log&lt;/p&gt;
+
+&lt;p&gt;[Install]
+WantedBy=multi-user.target
+```&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;保存并退出。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;重载systemd服务 &lt;code&gt;systemctl daemon-reload&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;启动并查看运行情况&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+systemctl start nostr-relay
+systemctl status nostr-relay
+&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置开机自启 &lt;code&gt;systemctl enable nostr-relay&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description><category>nostr</category><category>服务器</category><category>linux</category></item><item><title>博客文件丢失</title><link>https://chiu.joomaen.top/博客文件丢失-20241229.html</link><guid>https://chiu.joomaen.top/博客文件丢失-20241229.html</guid><pubDate>Sun, 29 Dec 2024 00:35:09 +0800</pubDate><description>&lt;p&gt;我之前用AI写了个简陋的静态博客程序，用python来构建，将本地markdown文件可以转为HTML并可以很方便的托管到GitHub pages。&lt;/p&gt;
 
 &lt;p&gt;我之前使用windows笔记本运行的，现在换了Mac，我想把仓库clone下来不就行了。不过遇到些问题，尽管clone了所有分支，不过没有将gh-pages分支绑定到&lt;code&gt;./output&lt;/code&gt;文件夹，好在有AI，用一个命令解决了 &lt;code&gt;git worktree add output gh-pages&lt;/code&gt;&lt;/p&gt;
 

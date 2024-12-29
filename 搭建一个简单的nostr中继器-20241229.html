@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搭建一个简单的NOSTR中继器</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="/">CHIU BLOG</a></h1>
+        </header>
+        
+        <main class="post">
+            <article>
+                <h1>搭建一个简单的NOSTR中继器</h1>
+                <div class="meta">
+                    <time datetime="2024-12-29">2024-12-29</time>
+                    
+                    <div class="tags">
+                        
+                        <span class="tag">nostr</span>
+                        
+                        <span class="tag">服务器</span>
+                        
+                        <span class="tag">linux</span>
+                        
+                    </div>
+                    
+                </div>
+                <div class="content">
+                    <h1>搭建一个简单的Nostr中继器</h1>
+
+<h3>使用项目：<a href="https://code.pobblelabs.org/nostr_relay/index">nostr relay</a> 一个python写的程序</h3>
+
+<ol>
+<li><p>使用<code>pip</code>安装：<code>pip install nostr-relay</code></p></li>
+<li><p>新建一个目录<code>mkdir /opt/nostr</code>，并进入目录 <code>cd /opt/nostr</code></p></li>
+<li><p>创建一个配置文件，<a href="https://code.pobblelabs.org/nostr_relay/file?name=nostr_relay/config.yaml">参考官方默认配置</a> ，我的配置如下，修改了一点</p>
+
+<blockquote>
+<pre><code>DEBUG: false
+
+relay_name: python relay
+relay_description: relay written in python
+sysop_pubkey: 
+sysop_contact: 
+
+storage:
+  sqlalchemy.url: sqlite+aiosqlite:///nostr.sqlite3
+  # the number of concurrent REQ queries sent to the db
+  num_concurrent_reqs: 10
+  # the number of concurrent event saves. (sqlite can only support 1 writer at a time)
+  num_concurrent_adds: 2
+  validators:
+    - nostr_relay.validators.is_not_too_large
+    - nostr_relay.validators.is_signed
+    - nostr_relay.validators.is_recent
+    - nostr_relay.validators.is_not_hellthread
+
+verification:
+  # options are disabled, passive, enabled
+  nip05_verification: disabled
+  expiration: 86400 * 30
+  update_frequency: 3600
+  #blacklist:
+  # - badhost.biz
+  #whitelist:
+  # - goodhost.com
+
+
+gunicorn:
+  bind: 127.0.0.1:6969
+  workers: 1
+  loglevel: info
+  reload: false
+
+
+purple:
+  host: 127.0.0.1
+  port: 6969
+  workers: 1
+  disable_compression: true
+
+
+# see docs/authentication.md
+authentication:
+  enabled: false
+  relay_urls: 
+    - ws://localhost:6969
+    - ws://127.0.0.1:6969
+    # 可以换成 ws://公网IP:6969
+    - wss://yourdomain.name
+  actions:
+    save: a
+    query: a
+
+# number of seconds to allow between client messages
+message_timeout: 1800
+
+# number of open subscriptions per connection
+subscription_limit: 32
+
+# set this to a private key used for internal control events
+# service_privatekey: 9627da965699a2a3048f97b77df5047e8cd0d11daca75e7687d0b28b65416a3c
+
+# set this to limit the number of events returned per REQ
+max_limit: 6000
+
+# set this to the maximum number of "p" tags in an event
+hellthread_limit: 100
+</code></pre>
+</blockquote></li>
+<li><p>使用你喜欢的反向代理工具，配合域名使用。</p></li>
+<li><p>使用systemd管理</p>
+
+<ol>
+<li><p>创建service文件 <code>vim /etc/systemd/system/nostr-relay.service</code></p></li>
+<li><p>内容为</p>
+
+<pre><code>[Unit]
+Description=Nostr Relay Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/nostr
+ExecStart=/usr/local/bin/nostr-relay -c /opt/nostr/config.yaml serve
+Restart=always
+RestartSec=5
+StandardOutput=append:/opt/nostr/nostr-relay.log
+StandardError=append:/opt/nostr/nostr-relay-error.log
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></li>
+<li><p>保存并退出。</p></li>
+<li><p>重载systemd服务 <code>systemctl daemon-reload</code></p></li>
+<li><p>启动并查看运行情况</p>
+
+<pre><code>systemctl start nostr-relay
+systemctl status nostr-relay
+</code></pre></li>
+<li><p>设置开机自启 <code>systemctl enable nostr-relay</code></p></li>
+</ol></li>
+</ol>
+
+                </div>
+            </article>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024-Present Joomaen Chiu Author</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
