@@ -67,7 +67,7 @@ class BlogGenerator:
         )
         
         # 创建输出文件
-        output_path = os.path.join('output', os.path.splitext(filename)[0] + '.html')
+        output_path = os.path.join('output/posts', os.path.splitext(filename)[0] + '.html')
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(output)
         
@@ -137,10 +137,10 @@ class BlogGenerator:
             item_title.text = post['title']
             
             item_link = ET.SubElement(item, 'link')
-            item_link.text = f"{self.site_url}/{post['url']}"
+            item_link.text = f"{self.site_url}/posts/{os.path.basename(post['url'])}"
             
             item_guid = ET.SubElement(item, 'guid')
-            item_guid.text = f"{self.site_url}/{post['url']}"
+            item_guid.text = f"{self.site_url}/posts/{os.path.basename(post['url'])}"
             
             item_pubDate = ET.SubElement(item, 'pubDate')
             # 处理日期可能是字符串或datetime.date的情况
@@ -152,7 +152,8 @@ class BlogGenerator:
             item_pubDate.text = formatdate(timestamp, localtime=True)
             
             # 获取文章内容
-            with open(os.path.join('posts', post['url'].replace('.html', '.md')), 'r', encoding='utf-8') as f:
+            md_filename = post['url'].replace('posts/', '').replace('.html', '.md')
+            with open(os.path.join('posts', md_filename), 'r', encoding='utf-8') as f:
                 post_content = frontmatter.load(f)
                 content_html = markdown2.markdown(post_content.content)
             
@@ -219,16 +220,34 @@ class BlogGenerator:
         else:
             os.makedirs('output')
         
+        # 创建 posts 目录
+        os.makedirs('output/posts', exist_ok=True)
+        
         # 生成所有文章
         posts = []
         for filename in os.listdir('posts'):
             if filename.endswith('.md'):
-                metadata = self.generate_post(filename)
+                # 生成文章内容
+                metadata, content = self.read_post(filename)
+                template = self.env.get_template('post.html')
+                output = template.render(
+                    title=metadata['title'],
+                    date=metadata['date'],
+                    tags=metadata['tags'],
+                    content=content
+                )
+                
+                # 创建输出文件到 posts 子目录
+                output_path = os.path.join('output/posts', os.path.splitext(filename)[0] + '.html')
+                with open(output_path, 'w', encoding='utf-8') as f:
+                    f.write(output)
+                
+                # 添加到文章列表
                 posts.append({
                     'title': metadata['title'],
                     'date': metadata['date'],
                     'tags': metadata['tags'],
-                    'url': os.path.splitext(filename)[0] + '.html',
+                    'url': 'posts/' + os.path.splitext(filename)[0] + '.html',
                     'created_at': metadata['created_at']
                 })
         
