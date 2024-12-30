@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare回源绕过备案</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="/">CHIU BLOG</a></h1>
+        </header>
+        
+        <main class="post">
+            <article>
+                <h1>Cloudflare回源绕过备案</h1>
+                <div class="meta">
+                    <time datetime="2024-12-30">2024-12-30</time>
+                    
+                    <div class="tags">
+                        
+                        <span class="tag">技巧</span>
+                        
+                    </div>
+                    
+                </div>
+                <div class="content">
+                    <h3>针对国内云服务器又没有备案的解决方法，当然可以使用其他端口，比如直接使用8443也是可以开启HTTPS的，可是不够优雅。如果你能接受Cloudflare的延迟，可以通过建立Origin Rules实现重定向。</h3>
+
+<ul>
+<li>反代服务端口设为 HTTP 8080；HTTPS 8443</li>
+<li>在cf中解析好对应域名、开启CDN</li>
+<li>在Cloudflare规则-Origin Rules中创建规则</li>
+<li>自定义筛选表达式—&gt;主机名 等于 你的域名</li>
+<li>目标端口重写到8443</li>
+</ul>
+
+                </div>
+            </article>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024-Present Joomaen Chiu Author</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

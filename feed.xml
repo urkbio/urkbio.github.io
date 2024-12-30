@@ -1,5 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sun, 29 Dec 2024 15:05:28 +0800</lastBuildDate><item><title>更新目录结构</title><link>https://chiu.joomaen.top/posts/更新目录结构-20241229.html</link><guid>https://chiu.joomaen.top/posts/更新目录结构-20241229.html</guid><pubDate>Sun, 29 Dec 2024 15:04:24 +0800</pubDate><description>&lt;p&gt;修改博客输出目录结构，所有HTML文件将在一个文件夹中，更美观&lt;/p&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Mon, 30 Dec 2024 13:27:15 +0800</lastBuildDate><item><title>2024.12.30</title><link>https://chiu.joomaen.top/posts/2024.12.30-20241230.html</link><guid>https://chiu.joomaen.top/posts/2024.12.30-20241230.html</guid><pubDate>Mon, 30 Dec 2024 13:26:12 +0800</pubDate><description>&lt;p&gt;我入手了Mac mini，现在最主要的电脑就是它了。12月初辞职了，希望明年能找到份工作吧，最近闲着，尝试各种新东西，AI相关的各个领域，比如写小说、绘画、写代码等，可这些要变现都没想象中那么容易，小说得依靠平台，审核挺严的，并非直接生成就能发表；绘画成本比较高，还没尝试；写代码也就做出了几个小的程序玩玩，对普通人来说门槛是低了，不过我觉得肯定是专业人士加AI才能大幅提升效率。&lt;/p&gt;
+
+&lt;p&gt;我还尝试了无货源网店、做视频等等，但这些都是没办法一蹴而就的，我只算是亲身体会下。&lt;/p&gt;
+</description><category>日常</category></item><item><title>Cloudflare回源绕过备案</title><link>https://chiu.joomaen.top/posts/cloudflare回源绕过备案-20241230.html</link><guid>https://chiu.joomaen.top/posts/cloudflare回源绕过备案-20241230.html</guid><pubDate>Mon, 30 Dec 2024 13:24:04 +0800</pubDate><description>&lt;h3&gt;针对国内云服务器又没有备案的解决方法，当然可以使用其他端口，比如直接使用8443也是可以开启HTTPS的，可是不够优雅。如果你能接受Cloudflare的延迟，可以通过建立Origin Rules实现重定向。&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;反代服务端口设为 HTTP 8080；HTTPS 8443&lt;/li&gt;
+&lt;li&gt;在cf中解析好对应域名、开启CDN&lt;/li&gt;
+&lt;li&gt;在Cloudflare规则-Origin Rules中创建规则&lt;/li&gt;
+&lt;li&gt;自定义筛选表达式—&amp;gt;主机名 等于 你的域名&lt;/li&gt;
+&lt;li&gt;目标端口重写到8443&lt;/li&gt;
+&lt;/ul&gt;
+</description><category>技巧</category></item><item><title>更新目录结构</title><link>https://chiu.joomaen.top/posts/更新目录结构-20241229.html</link><guid>https://chiu.joomaen.top/posts/更新目录结构-20241229.html</guid><pubDate>Sun, 29 Dec 2024 15:04:24 +0800</pubDate><description>&lt;p&gt;修改博客输出目录结构，所有HTML文件将在一个文件夹中，更美观&lt;/p&gt;
 </description><category>blog</category><category>test</category></item><item><title>搭建一个简单的NOSTR中继器</title><link>https://chiu.joomaen.top/posts/搭建一个简单的nostr中继器-20241229.html</link><guid>https://chiu.joomaen.top/posts/搭建一个简单的nostr中继器-20241229.html</guid><pubDate>Sun, 29 Dec 2024 14:41:30 +0800</pubDate><description>&lt;h1&gt;搭建一个简单的Nostr中继器&lt;/h1&gt;
 
 &lt;h3&gt;使用项目：&lt;a href="https://code.pobblelabs.org/nostr_relay/index"&gt;nostr relay&lt;/a&gt; 一个python写的程序&lt;/h3&gt;
