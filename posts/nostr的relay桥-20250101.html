@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nostr的Relay桥</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="/">CHIU BLOG</a></h1>
+        </header>
+        
+        <main class="post">
+            <article>
+                <h1>Nostr的Relay桥</h1>
+                <div class="meta">
+                    <time datetime="2025-01-01">2025-01-01</time>
+                    
+                    <div class="tags">
+                        
+                        <span class="tag">Nostr</span>
+                        
+                        <span class="tag">server</span>
+                        
+                    </div>
+                    
+                </div>
+                <div class="content">
+                    <ul>
+<li>项目：<a href="https://github.com/duozhutuan/NostrBridge">NostrBridge</a></li>
+</ul>
+
+<ol>
+<li><p>修改<code>server.js</code>中的监听端口</p></li>
+<li><p>可以修改<code>server.js</code>自定义端口</p></li>
+<li><p>用Nginx或其他反向代理该端口</p></li>
+</ol>
+
+<p>启动命令：</p>
+
+<pre><code># 进入目录
+cd /opt/NostrBridge
+
+# 用forever启动，设定日志到/dev/null 避免占用磁盘空间
+forever start \
+  -a \
+  -l /dev/null \
+  --minUptime 5000 \
+  --spinSleepTime 2000 \
+  src/server.js
+</code></pre>
+
+<hr />
+
+<p>也可以使用项目中的<code>cli.js</code>实现本地relay桥</p>
+
+<p>修改<code>config.js</code>中的localserver部分，改为自己的内网IP加端口，使用<code>ws://</code></p>
+
+<p>在<code>cli.js</code>中添加需要桥接的远端relay</p>
+
+<p>在本地启动<code>node src/cli.js</code></p>
+
+                </div>
+            </article>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024-Present Joomaen Chiu Author</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
