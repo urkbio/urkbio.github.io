@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解决macOS应用被损坏</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="/">CHIU BLOG</a></h1>
+        </header>
+        
+        <main class="post">
+            <article>
+                <h1>解决macOS应用被损坏</h1>
+                <div class="meta">
+                    <time datetime="2025-01-03">2025-01-03</time>
+                    
+                    <div class="tags">
+                        
+                        <span class="tag">macOS</span>
+                        
+                    </div>
+                    
+                </div>
+                <div class="content">
+                    <h2><img src="https://media.joomaen.top/2025/01/1735799249.png" alt="截屏2025-01-02 14.27.15.png" /></h2>
+
+<h3>1. 允许 “任何来源” 下载的 App 运行</h3>
+
+<p>打开 “终端” 执行如下命令（根据提示输入您的密码即可）：</p>
+
+<p><code>sudo spctl --master-disable</code></p>
+
+<p>打开 “系统偏好设置…” - “安全性与隐私”，“通用” 标签页，如图勾选：
+<img src="https://media.joomaen.top/2025/01/1735799337.png" alt="截屏2025-01-02 14.28.43.png" /></p>
+
+<h3>2. 移除应用的安全隔离属性</h3>
+
+<p>打开 “终端” 执行如下命令（根据提示输入您的密码即可）：</p>
+
+<p><code>sudo xattr -dr com.apple.quarantine /Applications/name.app</code></p>
+
+<p><code>/Applications/name.app</code> 如果不知道该如何输入，将 App 直接拖拽 <code>sudo xattr -rd com.apple.quarantine</code>（中间有个空格）后面即可。</p>
+
+<p>一般情况下，多余的扩展属性都可以清除（个别应用例外）：</p>
+
+<p>可以直接输入：<code>sudo xattr -cr /Applications/*</code></p>
+
+<h3>3. macOS Ventura 额外步骤</h3>
+
+<p>如果还不能打开，则到系统设置 – 隐私和安全性，“安全性” 下面出现提示，点击 “仍要打开”，当然该操作仅需要一次，以后可以正常打开。</p>
+
+<h3>4. 重新签名</h3>
+
+<p>多数情况下，App 已经可以正常运行了，很多和谐软件因为证书问题，仍然无法打开。此时可以重新签名。</p>
+
+<p>打开 “终端”，执行如下命令：</p>
+
+<p><code>codesign --force --deep --sign - /Applications/name.app</code></p>
+
+<p><strong>前提条件</strong>: 安装 Command Line Tools for Xcode</p>
+
+<p>此时会提示安装，或者使用终端命令在线安装：</p>
+
+<p><code>xcode-select --install</code></p>
+
+<p>也可以到这里下载 Command Line Tools for Xcode：<a href="https://sysin.org/blog/apple-xcode-14/" title="Xcode 14.3.1 (14E300c) - Apple 平台 IDE">Xcode 14.3.1 (14E300c) - Apple 平台 IDE</a></p>
+
+<h3>5. 覆盖恶意软件保护</h3>
+
+<p>还有一种情况，</p>
+
+<p>提示：“应用程序” 将对您的电脑造成伤害。您应该将它移到废纸篓。</p>
+
+<p>以上步骤操作后还是无法打开。</p>
+
+<p>解决办法：</p>
+
+<p>访达 -> 应用程序 -> 右击软件 -> 显示简介，勾选 “覆盖恶意软件保护”。</p>
+
+<hr />
+
+<p>转载自：<a href="https://sysin.org/blog/macos-if-crashes-when-opening/">sysin</a></p>
+
+                </div>
+            </article>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024-Present Joomaen Chiu Author</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

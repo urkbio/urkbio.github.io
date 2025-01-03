@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>macOS运行本地模型</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="/">CHIU BLOG</a></h1>
+        </header>
+        
+        <main class="post">
+            <article>
+                <h1>macOS运行本地模型</h1>
+                <div class="meta">
+                    <time datetime="2025-01-03">2025-01-03</time>
+                    
+                    <div class="tags">
+                        
+                        <span class="tag">macOS</span>
+                        
+                        <span class="tag">AI</span>
+                        
+                    </div>
+                    
+                </div>
+                <div class="content">
+                    <h3>使用ollama</h3>
+
+<ol>
+<li>安装<a href="https://github.com/ollama/ollama">ollama</a>：<code>brew install ollama</code></li>
+<li>启动ollama服务：<code>brew services start ollama</code></li>
+<li>尝试跑一个3B的LLaMA 3.2，<code>ollama run llama3.2:3b</code>，没下载的会自动下载，也可以在<a href="https://ollama.com/library">这个网站</a>下载其他模型。<img src="https://media.joomaen.top/2025/01/1735863050.png" alt="截屏2025-01-03 08.10.40.png" /></li>
+<li>此时可以输入文字进行对话了，也可以输入<code>/bye</code>退出对话框，然后使用一个其他的GUI工具接入本地大模型。
+我在Mac上使用<a href="https://apps.apple.com/us/app/enchanted-llm/id6474268307?l=zh-Hans-CN">Enchanted</a>，它能自动识别到本地的模型，无须额外配置即可使用，如果本地有多个模型可以切换。在ollama的<a href="https://github.com/ollama/ollama/blob/main/README.md">README.md</a>页面底部也有许多其他的工具可以自己选择。</li>
+<li>我的最低配Mac mini上运行3B模型很轻松，最高运行7/8B的。10B以上的没试过。不过模型太小的话使用场景有限，不能把它当成通用型的，如果就是文字翻译和简单聊天的话还行，叫它讲个笑话都只能讲出不超过5行的，一点都不好笑。</li>
+<li>要停止的话：
+<ol>
+<li>停止模型：<code>ollama ollama stop llama3.2:3b</code></li>
+<li>停止ollama服务：<code>brew services stop ollama</code></li>
+</ol></li>
+</ol>
+
+<h3>使用LM Studio</h3>
+
+<p><a href="https://lmstudio.ai/">LM Studio</a>是一个带有GUI的工具，可以更简单的运行模型。并且内置有针对M芯片优化的MLX模型。
+1. 安装LM Studio：<code>brew install --cask lm-studio</code>
+2. 进入后点击左侧discover🔍，这里有一些内置的模型供你选择，默认排序是按最匹配你的电脑的排在上方。选一个点击Download。<img src="https://media.joomaen.top/2025/01/1735866082.png" alt="截屏2025-01-03 09.00.51.png" />
+3. 下载好后点击左侧栏的Chat图标，点击顶部的框或按<code>⌘L</code>选择你下载的模型，如果有多个也是在这里选择。
+4. 之后就可以对话了。</p>
+
+                </div>
+            </article>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024-Present Joomaen Chiu Author</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

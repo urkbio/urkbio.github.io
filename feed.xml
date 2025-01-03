@@ -1,5 +1,86 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Wed, 01 Jan 2025 14:35:37 +0800</lastBuildDate><item><title>Nostr的Relay桥</title><link>https://chiu.joomaen.top/posts/nostr的relay桥-20250101.html</link><guid>https://chiu.joomaen.top/posts/nostr的relay桥-20250101.html</guid><pubDate>Wed, 01 Jan 2025 14:31:49 +0800</pubDate><description>&lt;ul&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Fri, 03 Jan 2025 11:19:28 +0800</lastBuildDate><item><title>macOS运行本地模型</title><link>https://chiu.joomaen.top/posts/macos运行本地模型-20250103.html</link><guid>https://chiu.joomaen.top/posts/macos运行本地模型-20250103.html</guid><pubDate>Fri, 03 Jan 2025 11:17:37 +0800</pubDate><description>&lt;h3&gt;使用ollama&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;安装&lt;a href="https://github.com/ollama/ollama"&gt;ollama&lt;/a&gt;：&lt;code&gt;brew install ollama&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启动ollama服务：&lt;code&gt;brew services start ollama&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;尝试跑一个3B的LLaMA 3.2，&lt;code&gt;ollama run llama3.2:3b&lt;/code&gt;，没下载的会自动下载，也可以在&lt;a href="https://ollama.com/library"&gt;这个网站&lt;/a&gt;下载其他模型。&lt;img src="https://media.joomaen.top/2025/01/1735863050.png" alt="截屏2025-01-03 08.10.40.png" /&gt;&lt;/li&gt;
+&lt;li&gt;此时可以输入文字进行对话了，也可以输入&lt;code&gt;/bye&lt;/code&gt;退出对话框，然后使用一个其他的GUI工具接入本地大模型。
+我在Mac上使用&lt;a href="https://apps.apple.com/us/app/enchanted-llm/id6474268307?l=zh-Hans-CN"&gt;Enchanted&lt;/a&gt;，它能自动识别到本地的模型，无须额外配置即可使用，如果本地有多个模型可以切换。在ollama的&lt;a href="https://github.com/ollama/ollama/blob/main/README.md"&gt;README.md&lt;/a&gt;页面底部也有许多其他的工具可以自己选择。&lt;/li&gt;
+&lt;li&gt;我的最低配Mac mini上运行3B模型很轻松，最高运行7/8B的。10B以上的没试过。不过模型太小的话使用场景有限，不能把它当成通用型的，如果就是文字翻译和简单聊天的话还行，叫它讲个笑话都只能讲出不超过5行的，一点都不好笑。&lt;/li&gt;
+&lt;li&gt;要停止的话：
+&lt;ol&gt;
+&lt;li&gt;停止模型：&lt;code&gt;ollama ollama stop llama3.2:3b&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;停止ollama服务：&lt;code&gt;brew services stop ollama&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;使用LM Studio&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://lmstudio.ai/"&gt;LM Studio&lt;/a&gt;是一个带有GUI的工具，可以更简单的运行模型。并且内置有针对M芯片优化的MLX模型。
+1. 安装LM Studio：&lt;code&gt;brew install --cask lm-studio&lt;/code&gt;
+2. 进入后点击左侧discover🔍，这里有一些内置的模型供你选择，默认排序是按最匹配你的电脑的排在上方。选一个点击Download。&lt;img src="https://media.joomaen.top/2025/01/1735866082.png" alt="截屏2025-01-03 09.00.51.png" /&gt;
+3. 下载好后点击左侧栏的Chat图标，点击顶部的框或按&lt;code&gt;⌘L&lt;/code&gt;选择你下载的模型，如果有多个也是在这里选择。
+4. 之后就可以对话了。&lt;/p&gt;
+</description><category>macOS</category><category>AI</category></item><item><title>解决macOS应用被损坏</title><link>https://chiu.joomaen.top/posts/解决macos应用被损坏-20250103.html</link><guid>https://chiu.joomaen.top/posts/解决macos应用被损坏-20250103.html</guid><pubDate>Fri, 03 Jan 2025 11:17:18 +0800</pubDate><description>&lt;h2&gt;&lt;img src="https://media.joomaen.top/2025/01/1735799249.png" alt="截屏2025-01-02 14.27.15.png" /&gt;&lt;/h2&gt;
+
+&lt;h3&gt;1. 允许 “任何来源” 下载的 App 运行&lt;/h3&gt;
+
+&lt;p&gt;打开 “终端” 执行如下命令（根据提示输入您的密码即可）：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo spctl --master-disable&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;打开 “系统偏好设置…” - “安全性与隐私”，“通用” 标签页，如图勾选：
+&lt;img src="https://media.joomaen.top/2025/01/1735799337.png" alt="截屏2025-01-02 14.28.43.png" /&gt;&lt;/p&gt;
+
+&lt;h3&gt;2. 移除应用的安全隔离属性&lt;/h3&gt;
+
+&lt;p&gt;打开 “终端” 执行如下命令（根据提示输入您的密码即可）：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo xattr -dr com.apple.quarantine /Applications/name.app&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/Applications/name.app&lt;/code&gt; 如果不知道该如何输入，将 App 直接拖拽 &lt;code&gt;sudo xattr -rd com.apple.quarantine&lt;/code&gt;（中间有个空格）后面即可。&lt;/p&gt;
+
+&lt;p&gt;一般情况下，多余的扩展属性都可以清除（个别应用例外）：&lt;/p&gt;
+
+&lt;p&gt;可以直接输入：&lt;code&gt;sudo xattr -cr /Applications/*&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3&gt;3. macOS Ventura 额外步骤&lt;/h3&gt;
+
+&lt;p&gt;如果还不能打开，则到系统设置 – 隐私和安全性，“安全性” 下面出现提示，点击 “仍要打开”，当然该操作仅需要一次，以后可以正常打开。&lt;/p&gt;
+
+&lt;h3&gt;4. 重新签名&lt;/h3&gt;
+
+&lt;p&gt;多数情况下，App 已经可以正常运行了，很多和谐软件因为证书问题，仍然无法打开。此时可以重新签名。&lt;/p&gt;
+
+&lt;p&gt;打开 “终端”，执行如下命令：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;codesign --force --deep --sign - /Applications/name.app&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;前提条件&lt;/strong&gt;: 安装 Command Line Tools for Xcode&lt;/p&gt;
+
+&lt;p&gt;此时会提示安装，或者使用终端命令在线安装：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;xcode-select --install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;也可以到这里下载 Command Line Tools for Xcode：&lt;a href="https://sysin.org/blog/apple-xcode-14/" title="Xcode 14.3.1 (14E300c) - Apple 平台 IDE"&gt;Xcode 14.3.1 (14E300c) - Apple 平台 IDE&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;5. 覆盖恶意软件保护&lt;/h3&gt;
+
+&lt;p&gt;还有一种情况，&lt;/p&gt;
+
+&lt;p&gt;提示：“应用程序” 将对您的电脑造成伤害。您应该将它移到废纸篓。&lt;/p&gt;
+
+&lt;p&gt;以上步骤操作后还是无法打开。&lt;/p&gt;
+
+&lt;p&gt;解决办法：&lt;/p&gt;
+
+&lt;p&gt;访达 -&gt; 应用程序 -&gt; 右击软件 -&gt; 显示简介，勾选 “覆盖恶意软件保护”。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;转载自：&lt;a href="https://sysin.org/blog/macos-if-crashes-when-opening/"&gt;sysin&lt;/a&gt;&lt;/p&gt;
+</description><category>macOS</category></item><item><title>Nostr的Relay桥</title><link>https://chiu.joomaen.top/posts/nostr的relay桥-20250101.html</link><guid>https://chiu.joomaen.top/posts/nostr的relay桥-20250101.html</guid><pubDate>Wed, 01 Jan 2025 14:31:49 +0800</pubDate><description>&lt;ul&gt;
 &lt;li&gt;项目：&lt;a href="https://github.com/duozhutuan/NostrBridge"&gt;NostrBridge&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
