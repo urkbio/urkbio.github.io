@@ -13,20 +13,20 @@ pip install -r requirements.txt
 >
 > 1. 首先，让我们创建一个新的虚拟环境。我会在当前目录下创建一个名为 `venv` 的虚拟环境：
 >
-> ~/Documents/Code/urkbio.github.io
+> `~/Documents/Code/urkbio.github.io`
 >
 > ```
-> $ python3 -m venv venv
+> python3 -m venv venv
 > ```
 >
 > 
 >
 > 2. 现在虚拟环境已经创建好了，让我们激活它。在 macOS 上，使用以下命令激活虚拟环境：
 >
-> ~/Documents/Code/urkbio.github.io
+> `~/Documents/Code/urkbio.github.io`
 >
 > ```
-> $ source venv/bin/activate
+> source venv/bin/activate
 > ```
 >
 > 3. 激活后，你会看到命令提示符前面出现 `(venv)`，这表示你已经在虚拟环境中了。
