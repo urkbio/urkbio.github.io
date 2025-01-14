@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本地IPFS访问</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="/">CHIU BLOG</a></h1>
+        </header>
+        
+        <main class="post">
+            <article>
+                <h1>本地IPFS访问</h1>
+                <div class="meta">
+                    <time datetime="2025-01-14">2025-01-14</time>
+                    
+                    <div class="tags">
+                        
+                        <span class="tag">IPFS</span>
+                        
+                        <span class="tag">IPNS</span>
+                        
+                    </div>
+                    
+                </div>
+                <div class="content">
+                    <p>安装IPFS Desktop客户端，本地IPFS Gateway在8080端口上。</p>
+
+<p>可以使用以下方法来访问</p>
+
+<pre><code># IPFS
+http://{CID}.ipfs.localhost:8080
+
+# IPNS
+http://{IPNS Key}.ipns.localhost:8080
+</code></pre>
+
+<p>或者</p>
+
+<pre><code># IPFS
+http://127.0.0.1:8080/ipfs/{CID}
+
+# IPNS
+http://127.0.0.1:8080/ipns/{IPNS Key}
+</code></pre>
+
+                </div>
+            </article>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024-Present Joomaen Chiu Author</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
