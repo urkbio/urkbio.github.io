@@ -1,5 +1,194 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sun, 19 Jan 2025 20:43:18 +0800</lastBuildDate><item><title>和ChatGPT的对话</title><link>https://chiu.joomaen.top/posts/和chatgpt的对话-20250119.html</link><guid>https://chiu.joomaen.top/posts/和chatgpt的对话-20250119.html</guid><pubDate>Sun, 19 Jan 2025 20:40:48 +0800</pubDate><description>&lt;h2&gt;&lt;em&gt;德国是先有纳粹还是先有东德&lt;/em&gt;&lt;/h2&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Tue, 21 Jan 2025 20:46:31 +0800</lastBuildDate><item><title>简单搭建Snell服务</title><link>https://chiu.joomaen.top/posts/简单搭建snell服务-20250121.html</link><guid>https://chiu.joomaen.top/posts/简单搭建snell服务-20250121.html</guid><pubDate>Tue, 21 Jan 2025 20:45:41 +0800</pubDate><description>&lt;h1&gt;简单搭建Snell服务（转载自&lt;a href="https://github.com/getsomecat/GetSomeCats/blob/Surge/%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BASnell%E6%9C%8D%E5%8A%A1.md"&gt;getsomecat&lt;/a&gt;,仅作为备份）&lt;/h1&gt;
+
+&lt;p&gt;本文主要参考了神机（花姐）&lt;a href="https://divineengine.net/article/deploying-a-snell-server/"&gt;Surge | 部署 Snell Server – DivineEngine | Site&lt;/a&gt;，只是根据自己搭建过程做了一点点改动。感谢花姐以及surge pro群里热心指导的各位。&lt;/p&gt;
+
+&lt;h1&gt;用ssh连上你的vps后，输入：&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+sudo -i
+&lt;/code&gt;
+获取管理权限&lt;/p&gt;
+
+&lt;h1&gt;如果系统没有预装可能需要先下载安装 vim，wget 及 unzip&lt;/h1&gt;
+
+&lt;h1&gt;APT&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+sudo apt update &amp;amp;&amp;amp; sudo apt install wget unzip
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1&gt;DNF&lt;/h1&gt;
+
+&lt;h1&gt;这一步ubuntu和Debian系统似乎不用。&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+sudo dnf install unzip
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1&gt;安装vim&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+apt install vim
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1&gt;下载 Snell Server&lt;/h1&gt;
+
+&lt;h1&gt;如果你的服务器是其它版本的去官网&lt;a href="https://manual.nssurge.com/others/snell.html"&gt;Snell Protocol · GitBook&lt;/a&gt;下载相应服务器版本。这里以linux-amd64为例&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+wget https://dl.nssurge.com/snell/snell-server-v4.0.1-linux-amd64.zip
+&lt;/code&gt;
+如果ARM的机器：
+```
+wget https://dl.nssurge.com/snell/snell-server-v4.0.1-linux-aarch64.zip&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;h1&gt;解压 Snell Server 到指定目录&lt;/h1&gt;
+
+&lt;p&gt;AMD
+&lt;code&gt;
+sudo unzip snell-server-v4.0.1-linux-amd64.zip -d /usr/local/bin
+&lt;/code&gt;
+ARM
+&lt;code&gt;
+sudo unzip snell-server-v4.0.1-linux-aarch64.zip -d /usr/local/bin
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1&gt;赋予服务器权限&lt;/h1&gt;
+
+&lt;h1&gt;花姐的教程里面没有这一步。但是我结合自己之前弄TUIC的经验，觉得应该还是要加上&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+chmod +x /usr/local/bin/snell-server
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1&gt;编写配置文件：&lt;/h1&gt;
+
+&lt;h1&gt;先执行新建文件夹操作&lt;/h1&gt;
+
+&lt;p&gt;```
+sudo mkdir /etc/snell&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;h1&gt;执行完建立文件夹操作后再进行写入配置&lt;/h1&gt;
+
+&lt;h1&gt;可以使用 Snell 的 wizard 生成一个配置文件&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+sudo snell-server --wizard -c /etc/snell/snell-server.conf
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1&gt;或者自己编写一个&lt;/h1&gt;
+
+&lt;p&gt;```
+sudo vim /etc/snell/snell-server.conf&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;h1&gt;将下面的复制粘贴进去，按esc 后输入"：wq"保存退出&lt;/h1&gt;
+
+&lt;h1&gt;Tips 如果要进行修改，按“i”后移动光标到相应位置，进行修改完毕后按esc退出并输入“：wq”保存（这个说明给像我这样对vim不熟悉的）&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+[snell-server]
+listen = 0.0.0.0:11807
+psk = AijHCeos15IvqDZTb1cJMX5GcgZzIVE
+ipv6 = false
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1&gt;参数说明：&lt;/h1&gt;
+
+&lt;p&gt;listen：监听地址及端口；
+psk：密钥；
+ipv6：如果需要 IPv6 支持将值为 – true；&lt;/p&gt;
+
+&lt;h1&gt;然后配置 Systemd 服务文件：&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+sudo vim /lib/systemd/system/snell.service
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2&gt;将下面的复制粘贴进去，按esc 后输入“：wq”保存退出&lt;/h2&gt;
+
+&lt;p&gt;```
+[Unit]
+Description=Snell Proxy Service
+After=network.target&lt;/p&gt;
+
+&lt;p&gt;[Service]
+Type=simple
+User=nobody
+Group=nogroup
+LimitNOFILE=32768
+ExecStart=/usr/local/bin/snell-server -c /etc/snell/snell-server.conf
+AmbientCapabilities=CAP&lt;em&gt;NET&lt;/em&gt;BIND_SERVICE
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=snell-server&lt;/p&gt;
+
+&lt;p&gt;[Install]
+WantedBy=multi-user.target
+```&lt;/p&gt;
+
+&lt;p&gt;⚠️ 注意：在一些 Linux 发行版 (CentOS7) 中并无 nogroup 群组，但可以尝试修改成 Group=nobody 解决。如果需要使用特权端口，可以在 [Service] 增加一条：AmbientCapabilities=CAP&lt;em&gt;NET&lt;/em&gt;BIND_SERVICE 以解决权限不足不能绑定的问题；&lt;/p&gt;
+
+&lt;p&gt;然后使用命令：&lt;/p&gt;
+
+&lt;h1&gt;重载服务&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+sudo systemctl daemon-reload
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1&gt;开机运行 Snell&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+sudo systemctl enable snell
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1&gt;开启 Snell&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+sudo systemctl start snell
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1&gt;关闭 Snell&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;
+sudo systemctl stop snell
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2&gt;查看 Snell 状态&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;
+sudo systemctl status snell
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1&gt;Tips:运行查看服务器状态后按“q”键退出&lt;/h1&gt;
+
+&lt;p&gt;如果要查看自己Snell配置：
+&lt;code&gt;
+cat /etc/snell/snell-server.conf
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;查看后将相应的配置输出到surge里面：&lt;/p&gt;
+
+&lt;p&gt;格式如下：（XXX.XXX.XXX.XXX换成你自己的vps IP，端口和psk也是自己改成自己设置的snell-server.conf里面相应数据。）
+&lt;code&gt;
+AWS-EC2-SG = snell, XXX.XXX.XXX.XXX, 11807, psk=AijHCeos15IvqDZTb1cJMX5GcgZzIVE, version=4, tfo=true
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;中午我是自己在 AWS -EC2 上按照这个步骤自己来了一遍并通了的。&lt;/p&gt;
+
+&lt;p&gt;如果你看完教程觉得好麻烦啊我不想动手搞，那么这个一键脚本应该可以帮到你
+```
+wget -O snell.sh --no-check-certificate https://raw.githubusercontent.com/getsomecat/Snell/master/snell_new.sh &amp;amp;&amp;amp; chmod +x snell.sh &amp;amp;&amp;amp; ./snell.sh&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+</description><category>自托管</category><category>代理</category></item><item><title>和ChatGPT的对话</title><link>https://chiu.joomaen.top/posts/和chatgpt的对话-20250119.html</link><guid>https://chiu.joomaen.top/posts/和chatgpt的对话-20250119.html</guid><pubDate>Sun, 19 Jan 2025 20:40:48 +0800</pubDate><description>&lt;h2&gt;&lt;em&gt;德国是先有纳粹还是先有东德&lt;/em&gt;&lt;/h2&gt;
 
 &lt;p&gt;德国是&lt;strong&gt;先有纳粹&lt;/strong&gt;，然后才有东德。&lt;/p&gt;
 
