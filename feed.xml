@@ -1,5 +1,62 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Tue, 21 Jan 2025 20:46:31 +0800</lastBuildDate><item><title>简单搭建Snell服务</title><link>https://chiu.joomaen.top/posts/简单搭建snell服务-20250121.html</link><guid>https://chiu.joomaen.top/posts/简单搭建snell服务-20250121.html</guid><pubDate>Tue, 21 Jan 2025 20:45:41 +0800</pubDate><description>&lt;h1&gt;简单搭建Snell服务（转载自&lt;a href="https://github.com/getsomecat/GetSomeCats/blob/Surge/%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BASnell%E6%9C%8D%E5%8A%A1.md"&gt;getsomecat&lt;/a&gt;,仅作为备份）&lt;/h1&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://chiu.joomaen.top</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Thu, 23 Jan 2025 18:04:50 +0800</lastBuildDate><item><title>尝试Cloudflare Tunnel使本地的IPNS公网访问</title><link>https://chiu.joomaen.top/posts/尝试cloudflare-tunnel使本地的ipns公网访问-20250123.html</link><guid>https://chiu.joomaen.top/posts/尝试cloudflare-tunnel使本地的ipns公网访问-20250123.html</guid><pubDate>Thu, 23 Jan 2025 18:03:48 +0800</pubDate><description>&lt;h3&gt;安装cloudflared:&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;
+brew install cloudflare/cloudflare/cloudflared
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3&gt;验证登录并授权一个域名(先在浏览器上登录Cloudflare，再运行命令):&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;
+cloudflared login
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3&gt;绑定自己域名 (可选)&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;创建隧道 (前提已经登录并授权一个域名) 
+&lt;code&gt;
+cloudflared tunnel create
+&lt;/code&gt;
+你的家目录中会出现 &lt;code&gt;~/.cloudflared/[一长串UUID].json&lt;/code&gt;，里面保存这运行这条隧道所需要的授权信息。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;配置路由
+创建了隧道之后，我们还需要让它可以被访问。Cloudflare 支持将其部署到负载均衡器后端，或者通过 DNS 直接访问。这里只介绍后者的使用方法。
+```
+cloudflared tunnel route dns [名字或者 UUID] [想要绑定到的域名或其二级域名]&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1&gt;例如：&lt;/h1&gt;
+
+&lt;p&gt;cloudflare tunnel route dns my-tunnel domain.example.com&lt;/p&gt;
+
+&lt;h1&gt;目标域名必须没有设定相关DNS解析记录&lt;/h1&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;h3&gt;使用Cloudflare随机域名启动&lt;/h3&gt;
+
+&lt;p&gt;修改为自己的端口，运行命令之后出现一个随记域名&lt;code&gt;https://random-name.trycloudflare.com&lt;/code&gt;: 
+&lt;code&gt;
+cloudflared tunnel --url http://localhost:8080
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3&gt;使用自己配置好的域名启动&lt;/h3&gt;
+
+&lt;p&gt;```
+cloudflared tunnel --name [隧道名称] --url http://[站点地址]&lt;/p&gt;
+
+&lt;h1&gt;例如:&lt;/h1&gt;
+
+&lt;p&gt;cloudflared tunnel --name my-tunnel --url http://127.0.0.1:18181
+```&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;参考: 
+- &lt;a href="https://blog.outv.im/2021/cloudflared-tunnel"&gt;用 Cloudflare Tunnel 进行内网穿透&lt;/a&gt;
+- &lt;a href="https://blog.logto.io/zh-TW/painless-local-debugging"&gt;無痛本地調試：使用 Cloudflare Tunnel 實現 HTTPS 和自定義主機名&lt;/a&gt;
+- &lt;a href="https://sspai.com/post/79278"&gt;CloudFlare Tunnel 免费内网穿透的简明教程&lt;/a&gt;&lt;/p&gt;
+</description><category>Cloudflare Tunnel</category><category>内网穿透</category></item><item><title>简单搭建Snell服务</title><link>https://chiu.joomaen.top/posts/简单搭建snell服务-20250121.html</link><guid>https://chiu.joomaen.top/posts/简单搭建snell服务-20250121.html</guid><pubDate>Tue, 21 Jan 2025 20:45:41 +0800</pubDate><description>&lt;h1&gt;简单搭建Snell服务（转载自&lt;a href="https://github.com/getsomecat/GetSomeCats/blob/Surge/%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BASnell%E6%9C%8D%E5%8A%A1.md"&gt;getsomecat&lt;/a&gt;,仅作为备份）&lt;/h1&gt;
 
 &lt;p&gt;本文主要参考了神机（花姐）&lt;a href="https://divineengine.net/article/deploying-a-snell-server/"&gt;Surge | 部署 Snell Server – DivineEngine | Site&lt;/a&gt;，只是根据自己搭建过程做了一点点改动。感谢花姐以及surge pro群里热心指导的各位。&lt;/p&gt;
 

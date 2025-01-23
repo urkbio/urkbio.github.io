@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>尝试Cloudflare Tunnel使本地的IPNS公网访问</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="/">CHIU BLOG</a></h1>
+        </header>
+        
+        <main class="post">
+            <article>
+                <h1>尝试Cloudflare Tunnel使本地的IPNS公网访问</h1>
+                <div class="meta">
+                    <time datetime="2025-01-23">2025-01-23</time>
+                    
+                    <div class="tags">
+                        
+                        <span class="tag">Cloudflare Tunnel</span>
+                        
+                        <span class="tag">内网穿透</span>
+                        
+                    </div>
+                    
+                </div>
+                <div class="content">
+                    <h3>安装cloudflared:</h3>
+
+<pre><code>brew install cloudflare/cloudflare/cloudflared
+</code></pre>
+
+<h3>验证登录并授权一个域名(先在浏览器上登录Cloudflare，再运行命令):</h3>
+
+<pre><code>cloudflared login
+</code></pre>
+
+<h3>绑定自己域名 (可选)</h3>
+
+<ol>
+<li>创建隧道 (前提已经登录并授权一个域名) </li>
+</ol>
+
+<pre><code>cloudflared tunnel create
+</code></pre>
+
+<p>你的家目录中会出现 <code>~/.cloudflared/[一长串UUID].json</code>，里面保存这运行这条隧道所需要的授权信息。</p>
+
+<ol start="2">
+<li>配置路由
+创建了隧道之后，我们还需要让它可以被访问。Cloudflare 支持将其部署到负载均衡器后端，或者通过 DNS 直接访问。这里只介绍后者的使用方法。</li>
+</ol>
+
+<pre><code>cloudflared tunnel route dns [名字或者 UUID] [想要绑定到的域名或其二级域名]
+
+# 例如：
+ cloudflare tunnel route dns my-tunnel domain.example.com
+# 目标域名必须没有设定相关DNS解析记录
+</code></pre>
+
+<h3>使用Cloudflare随机域名启动</h3>
+
+<p>修改为自己的端口，运行命令之后出现一个随记域名<code>https://random-name.trycloudflare.com</code>: </p>
+
+<pre><code>cloudflared tunnel --url http://localhost:8080
+</code></pre>
+
+<h3>使用自己配置好的域名启动</h3>
+
+<pre><code>cloudflared tunnel --name [隧道名称] --url http://[站点地址]
+
+# 例如:
+cloudflared tunnel --name my-tunnel --url http://127.0.0.1:18181
+</code></pre>
+
+<hr />
+
+<p>参考: 
+- <a href="https://blog.outv.im/2021/cloudflared-tunnel">用 Cloudflare Tunnel 进行内网穿透</a>
+- <a href="https://blog.logto.io/zh-TW/painless-local-debugging">無痛本地調試：使用 Cloudflare Tunnel 實現 HTTPS 和自定義主機名</a>
+- <a href="https://sspai.com/post/79278">CloudFlare Tunnel 免费内网穿透的简明教程</a></p>
+
+                </div>
+            </article>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024-Present Joomaen Chiu Author</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
