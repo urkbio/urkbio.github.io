@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://blog.sol.lc</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sat, 08 Mar 2025 12:54:48 +0800</lastBuildDate><item><title>更新内容</title><link>https://blog.sol.lc/posts/更新内容-20250308.html</link><guid>https://blog.sol.lc/posts/更新内容-20250308.html</guid><pubDate>Sat, 08 Mar 2025 12:41:21 +0800</pubDate><description>&lt;p&gt;为我的&lt;a href="https://github.com/urkbio/urkbio.github.io"&gt;静态博客&lt;/a&gt;修改了图片显示&lt;/p&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://blog.sol.lc</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sat, 08 Mar 2025 19:01:23 +0800</lastBuildDate><item><title>更新内容</title><link>https://blog.sol.lc/posts/更新内容-20250308.html</link><guid>https://blog.sol.lc/posts/更新内容-20250308.html</guid><pubDate>Sat, 08 Mar 2025 12:41:21 +0800</pubDate><description>&lt;p&gt;为我的&lt;a href="https://github.com/urkbio/urkbio.github.io"&gt;静态博客&lt;/a&gt;修改了图片显示&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;限制图片尺寸，不会看起来太大&lt;/li&gt;
