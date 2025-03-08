@@ -1,5 +1,63 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://blog.sol.lc</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sat, 08 Mar 2025 12:05:56 +0800</lastBuildDate><item><title>使用Cloudflare Workers搭建反代Google DoH</title><link>https://blog.sol.lc/posts/使用cloudflare-workers搭建反代google-doh-20250308.html</link><guid>https://blog.sol.lc/posts/使用cloudflare-workers搭建反代google-doh-20250308.html</guid><pubDate>Sat, 08 Mar 2025 11:47:05 +0800</pubDate><description>&lt;h3&gt;转自&lt;a href="https://www.nodeseek.com/post-282877-1"&gt;Nodeseek--使用Workers搭建反代加密DNS&lt;/a&gt;，仅作备份&lt;/h3&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://blog.sol.lc</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sat, 08 Mar 2025 12:09:06 +0800</lastBuildDate><item><title>解决macOS应用被损坏-更新</title><link>https://blog.sol.lc/posts/解决macos应用被损坏-更新-20250308.html</link><guid>https://blog.sol.lc/posts/解决macos应用被损坏-更新-20250308.html</guid><pubDate>Sat, 08 Mar 2025 12:08:22 +0800</pubDate><description>&lt;h2&gt;&lt;img src="https://media.235421.xyz/2025/01/1735799249.png" alt="截屏2025-01-02 14.27.15.png" /&gt;&lt;/h2&gt;
+
+&lt;h3&gt;1. 允许 “任何来源” 下载的 App 运行&lt;/h3&gt;
+
+&lt;p&gt;打开 “终端” 执行如下命令（根据提示输入您的密码即可）：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo spctl --master-disable&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;打开 “系统偏好设置…” - “安全性与隐私”，“通用” 标签页，如图勾选：
+&lt;img src="https://media.235421.xyz/2025/01/1735799337.png" alt="截屏2025-01-02 14.28.43.png" /&gt;&lt;/p&gt;
+
+&lt;h3&gt;2. 移除应用的安全隔离属性&lt;/h3&gt;
+
+&lt;p&gt;打开 “终端” 执行如下命令（根据提示输入您的密码即可）：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo xattr -dr com.apple.quarantine /Applications/name.app&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/Applications/name.app&lt;/code&gt; 如果不知道该如何输入，将 App 直接拖拽 &lt;code&gt;sudo xattr -rd com.apple.quarantine&lt;/code&gt;（中间有个空格）后面即可。&lt;/p&gt;
+
+&lt;p&gt;一般情况下，多余的扩展属性都可以清除（个别应用例外）：&lt;/p&gt;
+
+&lt;p&gt;可以直接输入：&lt;code&gt;sudo xattr -cr /Applications/*&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3&gt;3. macOS Ventura 额外步骤&lt;/h3&gt;
+
+&lt;p&gt;如果还不能打开，则到系统设置 – 隐私和安全性，“安全性” 下面出现提示，点击 “仍要打开”，当然该操作仅需要一次，以后可以正常打开。&lt;/p&gt;
+
+&lt;h3&gt;4. 重新签名&lt;/h3&gt;
+
+&lt;p&gt;多数情况下，App 已经可以正常运行了，很多和谐软件因为证书问题，仍然无法打开。此时可以重新签名。&lt;/p&gt;
+
+&lt;p&gt;打开 “终端”，执行如下命令：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;codesign --force --deep --sign - /Applications/name.app&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;前提条件&lt;/strong&gt;: 安装 Command Line Tools for Xcode&lt;/p&gt;
+
+&lt;p&gt;此时会提示安装，或者使用终端命令在线安装：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;xcode-select --install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;也可以到这里下载 Command Line Tools for Xcode：&lt;a href="https://sysin.org/blog/apple-xcode-14/" title="Xcode 14.3.1 (14E300c) - Apple 平台 IDE"&gt;Xcode 14.3.1 (14E300c) - Apple 平台 IDE&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;5. 覆盖恶意软件保护&lt;/h3&gt;
+
+&lt;p&gt;还有一种情况，&lt;/p&gt;
+
+&lt;p&gt;提示：“应用程序” 将对您的电脑造成伤害。您应该将它移到废纸篓。&lt;/p&gt;
+
+&lt;p&gt;以上步骤操作后还是无法打开。&lt;/p&gt;
+
+&lt;p&gt;解决办法：&lt;/p&gt;
+
+&lt;p&gt;访达 -&gt; 应用程序 -&gt; 右击软件 -&gt; 显示简介，勾选 “覆盖恶意软件保护”。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;转载自：&lt;a href="https://sysin.org/blog/macos-if-crashes-when-opening/"&gt;sysin&lt;/a&gt;&lt;/p&gt;
+</description><category>macOS</category></item><item><title>使用Cloudflare Workers搭建反代Google DoH</title><link>https://blog.sol.lc/posts/使用cloudflare-workers搭建反代google-doh-20250308.html</link><guid>https://blog.sol.lc/posts/使用cloudflare-workers搭建反代google-doh-20250308.html</guid><pubDate>Sat, 08 Mar 2025 11:47:05 +0800</pubDate><description>&lt;h3&gt;转自&lt;a href="https://www.nodeseek.com/post-282877-1"&gt;Nodeseek--使用Workers搭建反代加密DNS&lt;/a&gt;，仅作备份&lt;/h3&gt;
 
 &lt;p&gt;代码如下
 ```
@@ -757,65 +815,7 @@ wget -O snell.sh --no-check-certificate https://raw.githubusercontent.com/getsom
 2. 进入后点击左侧discover🔍，这里有一些内置的模型供你选择，默认排序是按最匹配你的电脑的排在上方。选一个点击Download。&lt;img src="https://media.joomaen.top/2025/01/1735866082.png" alt="截屏2025-01-03 09.00.51.png" /&gt;
 3. 下载好后点击左侧栏的Chat图标，点击顶部的框或按&lt;code&gt;⌘L&lt;/code&gt;选择你下载的模型，如果有多个也是在这里选择。
 4. 之后就可以对话了。&lt;/p&gt;
-</description><category>macOS</category><category>AI</category></item><item><title>解决macOS应用被损坏</title><link>https://blog.sol.lc/posts/解决macos应用被损坏-20250103.html</link><guid>https://blog.sol.lc/posts/解决macos应用被损坏-20250103.html</guid><pubDate>Fri, 03 Jan 2025 11:17:18 +0800</pubDate><description>&lt;h2&gt;&lt;img src="https://media.235421.xyz/2025/01/1735799249.png" alt="截屏2025-01-02 14.27.15.png" /&gt;&lt;/h2&gt;
-
-&lt;h3&gt;1. 允许 “任何来源” 下载的 App 运行&lt;/h3&gt;
-
-&lt;p&gt;打开 “终端” 执行如下命令（根据提示输入您的密码即可）：&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;sudo spctl --master-disable&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;打开 “系统偏好设置…” - “安全性与隐私”，“通用” 标签页，如图勾选：
-&lt;img src="https://media.235421.xyz/2025/01/1735799337.png" alt="截屏2025-01-02 14.28.43.png" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;2. 移除应用的安全隔离属性&lt;/h3&gt;
-
-&lt;p&gt;打开 “终端” 执行如下命令（根据提示输入您的密码即可）：&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;sudo xattr -dr com.apple.quarantine /Applications/name.app&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;/Applications/name.app&lt;/code&gt; 如果不知道该如何输入，将 App 直接拖拽 &lt;code&gt;sudo xattr -rd com.apple.quarantine&lt;/code&gt;（中间有个空格）后面即可。&lt;/p&gt;
-
-&lt;p&gt;一般情况下，多余的扩展属性都可以清除（个别应用例外）：&lt;/p&gt;
-
-&lt;p&gt;可以直接输入：&lt;code&gt;sudo xattr -cr /Applications/*&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3&gt;3. macOS Ventura 额外步骤&lt;/h3&gt;
-
-&lt;p&gt;如果还不能打开，则到系统设置 – 隐私和安全性，“安全性” 下面出现提示，点击 “仍要打开”，当然该操作仅需要一次，以后可以正常打开。&lt;/p&gt;
-
-&lt;h3&gt;4. 重新签名&lt;/h3&gt;
-
-&lt;p&gt;多数情况下，App 已经可以正常运行了，很多和谐软件因为证书问题，仍然无法打开。此时可以重新签名。&lt;/p&gt;
-
-&lt;p&gt;打开 “终端”，执行如下命令：&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;codesign --force --deep --sign - /Applications/name.app&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;前提条件&lt;/strong&gt;: 安装 Command Line Tools for Xcode&lt;/p&gt;
-
-&lt;p&gt;此时会提示安装，或者使用终端命令在线安装：&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;xcode-select --install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;也可以到这里下载 Command Line Tools for Xcode：&lt;a href="https://sysin.org/blog/apple-xcode-14/" title="Xcode 14.3.1 (14E300c) - Apple 平台 IDE"&gt;Xcode 14.3.1 (14E300c) - Apple 平台 IDE&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;5. 覆盖恶意软件保护&lt;/h3&gt;
-
-&lt;p&gt;还有一种情况，&lt;/p&gt;
-
-&lt;p&gt;提示：“应用程序” 将对您的电脑造成伤害。您应该将它移到废纸篓。&lt;/p&gt;
-
-&lt;p&gt;以上步骤操作后还是无法打开。&lt;/p&gt;
-
-&lt;p&gt;解决办法：&lt;/p&gt;
-
-&lt;p&gt;访达 -&gt; 应用程序 -&gt; 右击软件 -&gt; 显示简介，勾选 “覆盖恶意软件保护”。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;转载自：&lt;a href="https://sysin.org/blog/macos-if-crashes-when-opening/"&gt;sysin&lt;/a&gt;&lt;/p&gt;
-</description><category>macOS</category></item><item><title>Nostr的Relay桥</title><link>https://blog.sol.lc/posts/nostr的relay桥-20250101.html</link><guid>https://blog.sol.lc/posts/nostr的relay桥-20250101.html</guid><pubDate>Wed, 01 Jan 2025 14:31:49 +0800</pubDate><description>&lt;ul&gt;
+</description><category>macOS</category><category>AI</category></item><item><title>Nostr的Relay桥</title><link>https://blog.sol.lc/posts/nostr的relay桥-20250101.html</link><guid>https://blog.sol.lc/posts/nostr的relay桥-20250101.html</guid><pubDate>Wed, 01 Jan 2025 14:31:49 +0800</pubDate><description>&lt;ul&gt;
 &lt;li&gt;项目：&lt;a href="https://github.com/duozhutuan/NostrBridge"&gt;NostrBridge&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
