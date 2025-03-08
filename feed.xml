@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://blog.sol.lc</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sat, 08 Mar 2025 11:48:13 +0800</lastBuildDate><item><title>使用Cloudflare Workers搭建反代Google DoH</title><link>https://blog.sol.lc/posts/使用cloudflare-workers搭建反代google-doh-20250308.html</link><guid>https://blog.sol.lc/posts/使用cloudflare-workers搭建反代google-doh-20250308.html</guid><pubDate>Sat, 08 Mar 2025 11:47:05 +0800</pubDate><description>&lt;h3&gt;转自&lt;a href="https://www.nodeseek.com/post-282877-1"&gt;Nodeseek--使用Workers搭建反代加密DNS&lt;/a&gt;，仅作备份&lt;/h3&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://blog.sol.lc</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sat, 08 Mar 2025 11:55:55 +0800</lastBuildDate><item><title>使用Cloudflare Workers搭建反代Google DoH</title><link>https://blog.sol.lc/posts/使用cloudflare-workers搭建反代google-doh-20250308.html</link><guid>https://blog.sol.lc/posts/使用cloudflare-workers搭建反代google-doh-20250308.html</guid><pubDate>Sat, 08 Mar 2025 11:47:05 +0800</pubDate><description>&lt;h3&gt;转自&lt;a href="https://www.nodeseek.com/post-282877-1"&gt;Nodeseek--使用Workers搭建反代加密DNS&lt;/a&gt;，仅作备份&lt;/h3&gt;
 
 &lt;p&gt;代码如下
 ```
