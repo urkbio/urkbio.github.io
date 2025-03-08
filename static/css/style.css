@@ -18,9 +18,12 @@ body {
 
 .content img {
     max-width: 100%;
+    max-height: 600px;  /* 限制最大高度 */
+    width: auto;        /* 自动调整宽度 */
     height: auto;
     display: block;
     margin: 1em auto;
+    object-fit: contain; /* 确保图片完整显示且保持比例 */
 }
 
 .container {
