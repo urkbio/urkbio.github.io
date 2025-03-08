@@ -16,16 +16,6 @@ body {
     padding: 0;
 }
 
-.content img {
-    max-width: 500px;      /* 限制最大宽度 */
-    max-height: 500px;     /* 限制最大高度 */
-    width: 100%;          /* 在小屏幕上自适应 */
-    height: auto;         /* 保持比例 */
-    display: block;
-    margin: 1em auto;
-    object-fit: contain;  /* 确保图片完整显示且保持比例 */
-}
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
