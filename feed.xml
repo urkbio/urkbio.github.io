@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://blog.sol.lc</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sat, 08 Mar 2025 12:49:24 +0800</lastBuildDate><item><title>更新内容</title><link>https://blog.sol.lc/posts/更新内容-20250308.html</link><guid>https://blog.sol.lc/posts/更新内容-20250308.html</guid><pubDate>Sat, 08 Mar 2025 12:41:21 +0800</pubDate><description>&lt;p&gt;为我的&lt;a href="https://github.com/urkbio/urkbio.github.io"&gt;静态博客&lt;/a&gt;修改了图片显示&lt;/p&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://blog.sol.lc</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sat, 08 Mar 2025 12:54:48 +0800</lastBuildDate><item><title>更新内容</title><link>https://blog.sol.lc/posts/更新内容-20250308.html</link><guid>https://blog.sol.lc/posts/更新内容-20250308.html</guid><pubDate>Sat, 08 Mar 2025 12:41:21 +0800</pubDate><description>&lt;p&gt;为我的&lt;a href="https://github.com/urkbio/urkbio.github.io"&gt;静态博客&lt;/a&gt;修改了图片显示&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;限制图片尺寸，不会看起来太大&lt;/li&gt;
@@ -997,7 +997,7 @@ systemctl status nostr-relay
 &lt;p&gt;我之前使用windows笔记本运行的，现在换了Mac，我想把仓库clone下来不就行了。不过遇到些问题，尽管clone了所有分支，不过没有将gh-pages分支绑定到&lt;code&gt;./output&lt;/code&gt;文件夹，好在有AI，用一个命令解决了 &lt;code&gt;git worktree add output gh-pages&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;我以为都万事大吉了，写了一篇build好了，准备推送到GitHub，可是推送之后我发现有的文章丢失了。我发现是因为这次构建时完全使用的GitHub上的文件和我新建的这一个，不过我上次写的markdown文件并没有推送到GitHub，我只把gh-pages分支推送了，master分支并没有推送，所以markdown源文件就不存在了，于是构建出来的HTML当然也不会显示这些旧文件。&lt;/p&gt;
-</description><category>博客</category></item><item><title>verity</title><link>https://blog.sol.lc/posts/verity-20241224.html</link><guid>https://blog.sol.lc/posts/verity-20241224.html</guid><pubDate>Sun, 29 Dec 2024 00:03:17 +0800</pubDate><description>&lt;p&gt;This message is used to verify that this feed (feedId:94115645064285184) belongs to me (userId:72254986268311552). Join me in enjoying the next generation information browser https://follow.is.&lt;/p&gt;
+</description><category>blog</category></item><item><title>verity</title><link>https://blog.sol.lc/posts/verity-20241224.html</link><guid>https://blog.sol.lc/posts/verity-20241224.html</guid><pubDate>Sun, 29 Dec 2024 00:03:17 +0800</pubDate><description>&lt;p&gt;This message is used to verify that this feed (feedId:94115645064285184) belongs to me (userId:72254986268311552). Join me in enjoying the next generation information browser https://follow.is.&lt;/p&gt;
 </description><category>verity</category></item><item><title>一个简单的静态博客</title><link>https://blog.sol.lc/posts/一个简单的静态博客-20241224.html</link><guid>https://blog.sol.lc/posts/一个简单的静态博客-20241224.html</guid><pubDate>Sun, 29 Dec 2024 00:03:17 +0800</pubDate><description>&lt;p&gt;今天用AI写了一个静态网页，效果很好，一把就好了，AI写前端一点压力都没有。&lt;/p&gt;
 
 &lt;p&gt;可是我不知道要展示些什么，于是就叫它改了改，做成一个静态博客。&lt;/p&gt;
