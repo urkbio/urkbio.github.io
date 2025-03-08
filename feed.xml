@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://blog.sol.lc</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sat, 08 Mar 2025 11:59:10 +0800</lastBuildDate><item><title>使用Cloudflare Workers搭建反代Google DoH</title><link>https://blog.sol.lc/posts/使用cloudflare-workers搭建反代google-doh-20250308.html</link><guid>https://blog.sol.lc/posts/使用cloudflare-workers搭建反代google-doh-20250308.html</guid><pubDate>Sat, 08 Mar 2025 11:47:05 +0800</pubDate><description>&lt;h3&gt;转自&lt;a href="https://www.nodeseek.com/post-282877-1"&gt;Nodeseek--使用Workers搭建反代加密DNS&lt;/a&gt;，仅作备份&lt;/h3&gt;
+<rss version="2.0"><channel><title>CHIU BLOG</title><link>https://blog.sol.lc</link><description>Sharing Technology and Life</description><language>zh-CN</language><lastBuildDate>Sat, 08 Mar 2025 12:05:56 +0800</lastBuildDate><item><title>使用Cloudflare Workers搭建反代Google DoH</title><link>https://blog.sol.lc/posts/使用cloudflare-workers搭建反代google-doh-20250308.html</link><guid>https://blog.sol.lc/posts/使用cloudflare-workers搭建反代google-doh-20250308.html</guid><pubDate>Sat, 08 Mar 2025 11:47:05 +0800</pubDate><description>&lt;h3&gt;转自&lt;a href="https://www.nodeseek.com/post-282877-1"&gt;Nodeseek--使用Workers搭建反代加密DNS&lt;/a&gt;，仅作备份&lt;/h3&gt;
 
 &lt;p&gt;代码如下
 ```
@@ -757,7 +757,7 @@ wget -O snell.sh --no-check-certificate https://raw.githubusercontent.com/getsom
 2. 进入后点击左侧discover🔍，这里有一些内置的模型供你选择，默认排序是按最匹配你的电脑的排在上方。选一个点击Download。&lt;img src="https://media.joomaen.top/2025/01/1735866082.png" alt="截屏2025-01-03 09.00.51.png" /&gt;
 3. 下载好后点击左侧栏的Chat图标，点击顶部的框或按&lt;code&gt;⌘L&lt;/code&gt;选择你下载的模型，如果有多个也是在这里选择。
 4. 之后就可以对话了。&lt;/p&gt;
-</description><category>macOS</category><category>AI</category></item><item><title>解决macOS应用被损坏</title><link>https://blog.sol.lc/posts/解决macos应用被损坏-20250103.html</link><guid>https://blog.sol.lc/posts/解决macos应用被损坏-20250103.html</guid><pubDate>Fri, 03 Jan 2025 11:17:18 +0800</pubDate><description>&lt;h2&gt;&lt;img src="https://media.joomaen.top/2025/01/1735799249.png" alt="截屏2025-01-02 14.27.15.png" /&gt;&lt;/h2&gt;
+</description><category>macOS</category><category>AI</category></item><item><title>解决macOS应用被损坏</title><link>https://blog.sol.lc/posts/解决macos应用被损坏-20250103.html</link><guid>https://blog.sol.lc/posts/解决macos应用被损坏-20250103.html</guid><pubDate>Fri, 03 Jan 2025 11:17:18 +0800</pubDate><description>&lt;h2&gt;&lt;img src="https://media.235421.xyz/2025/01/1735799249.png" alt="截屏2025-01-02 14.27.15.png" /&gt;&lt;/h2&gt;
 
 &lt;h3&gt;1. 允许 “任何来源” 下载的 App 运行&lt;/h3&gt;
 
@@ -766,7 +766,7 @@ wget -O snell.sh --no-check-certificate https://raw.githubusercontent.com/getsom
 &lt;p&gt;&lt;code&gt;sudo spctl --master-disable&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;打开 “系统偏好设置…” - “安全性与隐私”，“通用” 标签页，如图勾选：
-&lt;img src="https://media.joomaen.top/2025/01/1735799337.png" alt="截屏2025-01-02 14.28.43.png" /&gt;&lt;/p&gt;
+&lt;img src="https://media.235421.xyz/2025/01/1735799337.png" alt="截屏2025-01-02 14.28.43.png" /&gt;&lt;/p&gt;
 
 &lt;h3&gt;2. 移除应用的安全隔离属性&lt;/h3&gt;
 
