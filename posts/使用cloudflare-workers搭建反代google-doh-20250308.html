@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用Cloudflare Workers搭建反代Google DoH</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+
+    <script>(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('vemtoutcheeg.com',8931023,document.createElement('script'))</script>
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><a href="/">CHIU BLOG</a></h1>
+        </header>
+        
+        <main class="post">
+            <article>
+                <h1>使用Cloudflare Workers搭建反代Google DoH</h1>
+                <div class="meta">
+                    <time datetime="2025-03-08">2025-03-08</time>
+                    
+                    <div class="tags">
+                        
+                        <span class="tag">Cloudflare Workers</span>
+                        
+                        <span class="tag">DoH</span>
+                        
+                    </div>
+                    
+                </div>
+                <div class="content">
+                    <h3>转自<a href="https://www.nodeseek.com/post-282877-1">Nodeseek--使用Workers搭建反代加密DNS</a>，仅作备份</h3>
+
+<p>代码如下</p>
+
+<pre><code>export default {
+  async fetch(request) {
+    let url = new URL(request.url);
+
+    // 仅允许 /doh, /dns-query特征明显，换成别的
+    if (url.pathname !== "/doh") {
+      return new Response("Not Found", { status: 404 });
+    }
+
+    // 目标 DoH 服务器
+    let targetURL = "https://dns.google/dns-query" + url.search;
+
+    let modifiedRequest = new Request(targetURL, {
+      method: request.method,
+      headers: new Headers(request.headers),
+      body: request.body,
+      redirect: "follow"
+    });
+
+    // 设置正确的 Host 头，避免 Google 拒绝请求
+    modifiedRequest.headers.set("Host", "dns.google");
+    modifiedRequest.headers.set("Accept", "application/dns-message");
+
+    let response = await fetch(modifiedRequest);
+
+    let newHeaders = new Headers(response.headers);
+    newHeaders.set("Access-Control-Allow-Origin", "*"); // 允许 CORS
+
+    return new Response(response.body, {
+      status: response.status,
+      headers: newHeaders
+    });
+  }
+}
+
+</code></pre>
+
+<p>最好将默认路径<code>/dns-query</code>换成别的，或许更不容易被阻断</p>
+
+<p>部署之后绑定自定域名，使用<code>https://your.domain/doh</code>即可进行加密DNS查询</p>
+
+                </div>
+            </article>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024-Present Joomaen Chiu Author</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
