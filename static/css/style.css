@@ -75,6 +75,7 @@ header .subtitle {
     display: block;
     margin: 1em auto;
     object-fit: contain;  /* 确保图片完整显示且保持比例 */
+    cursor: zoom-in;  /* 添加鼠标样式提示可点击 */
 }
 
 .post-preview {
